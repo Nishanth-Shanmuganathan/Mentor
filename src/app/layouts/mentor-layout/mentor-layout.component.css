@@ -1,0 +1,15 @@
+main {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+app-header,
+.outlet-div {
+  display: table-row;
+}
+
+
+mat-drawer {
+  width: 200px;
+}

@@ -1,0 +1,191 @@
+<!-- <app-header (window:resize)="mobileView($event)"></app-header> -->
+<main
+  [ngClass]="{ 'main-bg': isMobile }"
+  class="d-flex align-items-center justify-content-center"
+  (window:resize)="mobileView()"
+>
+  <section
+    [ngClass]="{ 'right-cover': !loginView && !isMobile }"
+    class="d-flex align-items-center justify-content-center"
+    *ngIf="!isMobile || (isMobile && loginView)"
+  >
+    <button
+      matRipple
+      matRippleColor="#ffffff1f"
+      class="auth-buttons"
+      (click)="loginView = !loginView"
+      *ngIf="!loginView && !isMobile"
+    >
+      Login
+    </button>
+    <mat-card *ngIf="loginView">
+      <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+        <table cellpadding="10px">
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-label>Email Id</mat-label>
+                <input matInput formControlName="email" type="text" />
+                <button type="button" mat-icon-button matSuffix disabled>
+                  <mat-icon>mail</mat-icon>
+                </button>
+                <mat-error>Invalid email-id...</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  [type]="password ? 'password' : 'text'"
+                  formControlName="password"
+                />
+                <button
+                  type="button"
+                  mat-icon-button
+                  matSuffix
+                  (click)="password = !password"
+                >
+                  <mat-icon>visibility_off</mat-icon>
+                </button>
+                <mat-hint>Password should atleast be 8 characters</mat-hint>
+                <mat-error>Invalid password...</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="button">
+              <button matRipple matRippleColor="#ffffff1f" class="auth-buttons">
+                Login
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="isMobile">
+            <td class="button">
+              <button
+                matRipple
+                matRippleColor="#0000001f"
+                class="auth-buttons grad-buttons"
+                (click)="loginView = !loginView"
+                *ngIf="loginView"
+              >
+                Register
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card>
+  </section>
+  <section
+    [ngClass]="{ 'left-cover': loginView && !isMobile }"
+    class="d-flex align-items-center justify-content-center"
+    *ngIf="!isMobile || (isMobile && !loginView)"
+  >
+    <button
+      matRipple
+      matRippleColor="#ffffff1f"
+      class="auth-buttons"
+      (click)="loginView = !loginView"
+      *ngIf="loginView && !isMobile"
+    >
+      Register
+    </button>
+    <mat-card *ngIf="!loginView">
+      <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+        <table cellpadding="10px">
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-label>Email Id</mat-label>
+                <input matInput formControlName="email" type="text" />
+                <button type="button" mat-icon-button matSuffix disabled>
+                  <mat-icon>mail</mat-icon>
+                </button>
+                <mat-error>Invalid email-id...</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  [type]="password ? 'password' : 'text'"
+                  formControlName="password"
+                />
+                <button
+                  type="button"
+                  mat-icon-button
+                  matSuffix
+                  (click)="password = !password"
+                >
+                  <mat-icon>visibility_off</mat-icon>
+                </button>
+                <mat-hint>Password should atleast be 8 characters</mat-hint>
+                <mat-error>Invalid password...</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-label>Confirm Password</mat-label>
+                <input
+                  matInput
+                  [type]="conPassword ? 'password' : 'text'"
+                  formControlName="confirmPassword"
+                />
+                <button
+                  type="button"
+                  mat-icon-button
+                  matSuffix
+                  (click)="conPassword = !conPassword"
+                >
+                  <mat-icon>visibility_off</mat-icon>
+                </button>
+                <mat-error>Password mismatch...</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-label>Login As</mat-label>
+                <mat-select formControlName="role">
+                  <mat-option value="Start-up">Start-up</mat-option>
+                  <mat-option value="Mentor">Mentor</mat-option>
+                  <mat-option value="Student">Student</mat-option>
+                  <mat-option value="Investor">Investor</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="button">
+              <button matRipple matRippleColor="#ffffff1f" class="auth-buttons">
+                Register
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="isMobile">
+            <td class="button">
+              <button
+                matRipple
+                matRippleColor="#0000001f"
+                class="auth-buttons grad-buttons"
+                (click)="loginView = !loginView"
+                *ngIf="!loginView"
+              >
+                Login
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card>
+  </section>
+</main>

@@ -1,0 +1,22 @@
+<main>
+  <app-header
+    [icon]="isMobile"
+    (toggle)="drawer.toggle()"
+    (window:resize)="mobileView()"
+  ></app-header>
+  <div class="outlet-div">
+    <mat-drawer-container style="height: 100%;" class="example-container">
+      <mat-drawer
+        #drawer
+        [mode]="isMobile ? 'over' : 'side'"
+        [opened]="!isMobile"
+      >
+        <app-side-nav></app-side-nav>
+      </mat-drawer>
+
+      <div class="example-sidenav-content">
+        <p>heeey</p>
+      </div>
+    </mat-drawer-container>
+  </div>
+</main>

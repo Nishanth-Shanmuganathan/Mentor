@@ -1,0 +1,48 @@
+<div
+  *ngIf="isMobile"
+  class="profile-section d-flex flex-column justify-content-between"
+>
+  <div class="d-flex justify-content-end">
+    <button mat-icon-button>
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+  <p>
+    Sunil Padasala Gopikrishna Vatsalam
+  </p>
+</div>
+<mat-list
+  [ngClass]="{
+    fit: isMobile,
+    'justify-content-between': !isMobile,
+    cent: !isMobile
+  }"
+  class="d-flex flex-column align-items-center"
+>
+  <div>
+    <mat-list-item
+      matRipple
+      matRippleColor="#ffffff1f"
+      *ngFor="let datum of data"
+    >
+      <mat-icon>{{ datum.icon }}</mat-icon>
+      <span>{{ datum.name | uppercase }}</span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+
+  <div>
+    <mat-list-item
+      matRipple
+      matRippleColor="#ffffff1f"
+      *ngFor="let datum of fixedData"
+    >
+      <mat-icon>{{ datum.icon }}</mat-icon>
+      <span>{{ datum.name | uppercase }}</span>
+    </mat-list-item>
+    <mat-list-item matRipple matRippleColor="#ffffff1f" class="logout">
+      <mat-icon>login</mat-icon>
+      <span>LOGOUT</span>
+    </mat-list-item>
+  </div>
+</mat-list>

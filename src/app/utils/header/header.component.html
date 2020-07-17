@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="d-flex align-items-center">
+    <div class="container-fluid">
+      <div class="row justify-content-between">
+        <div class="col-*">
+          <button *ngIf="icon" mat-icon-button (click)="emitSideBarToggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <img
+            class="img-fluid"
+            src="./../../../assets/mentor-logo.png"
+            alt="logo"
+          />
+          <span>Mentor-Hub</span>
+        </div>
+        <div *ngIf="!icon">
+          <button mat-icon-button>
+            <mat-icon>account_circle</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
