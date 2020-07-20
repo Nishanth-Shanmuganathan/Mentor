@@ -1,0 +1,40 @@
+:host() {
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+p {
+  text-align: justify;
+}
+
+.answers mat-card {
+  margin: 10px 0px 0px 50px;
+  box-shadow: none;
+}
+
+.answers mat-card mat-card-header mat-card-title {
+  font-size: 16px;
+
+}
+
+.answers mat-card mat-card-content {
+  text-align: justify;
+}
+
+
+.add-query {
+  margin: 0px;
+  padding: 10px;
+  border: 0px;
+  border-radius: 125px;
+  width: fit-content;
+  height: 40px;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

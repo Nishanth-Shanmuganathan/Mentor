@@ -1,0 +1,26 @@
+:host() {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: justify;
+  text-indent: 20px;
+}
+
+.top_right {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+
+button[mat-menu-item].red,
+.red {
+  color: rgb(170, 0, 0);
+}
+
+button[mat-menu-item].green,
+.green {
+  color: green;
+}

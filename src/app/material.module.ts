@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const Modules = [
   MatToolbarModule,
@@ -25,7 +26,8 @@ const Modules = [
   MatSidenavModule,
   MatTreeModule,
   MatListModule,
-  MatRippleModule
+  MatRippleModule,
+  MatExpansionModule
 ];
 
 @NgModule({

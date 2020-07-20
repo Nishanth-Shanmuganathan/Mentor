@@ -63,14 +63,14 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     if (form.invalid) { return; }
     console.log(form.value);
     // form.reset();
-    this.route.navigate(['home']);
+    this.route.navigate(['/']);
   }
 
   register(form: FormGroup) {
 
     if (form.invalid) { return; }
     console.log(form.value);
-    this.route.navigate(['/home']);
+    this.route.navigate(['/']);
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,60 @@
+<mat-card class="col-12">
+  <mat-card-header>
+    <img
+      [src]="query.imageUrl || '../../../../assets/user.png'"
+      mat-card-avatar
+    />
+    <mat-card-title>{{ query.name }} </mat-card-title>
+    <mat-card-subtitle>{{ query.company }}</mat-card-subtitle>
+    <!-- Mentor Actions -->
+    <!-- <button mat-icon-button class="top_right">
+  <mat-icon>favorite</mat-icon>
+</button> -->
+
+    <!-- Startup actions -->
+    <button mat-icon-button class="top_right" [mat-menu-trigger-for]="menu">
+      <mat-icon>more_vert </mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content (click)="showAnswers = !showAnswers">
+    <p>{{ query.query }}</p>
+    <ng-container>
+      <div
+        class="row answers justify-content-end justify-content-md-around align-items-center"
+        *ngIf="showAnswers && query.answers.length !== 0"
+      >
+        <div class="col-11 col-md-10">
+          <app-answer
+            *ngFor="let answer of query.answers"
+            [answer]="answer"
+          ></app-answer>
+        </div>
+      </div>
+    </ng-container>
+  </mat-card-content>
+  <mat-card-actions class="row">
+    <mat-form-field class="col-6">
+      <mat-label>Comment..</mat-label>
+      <textarea matInput name="answer" [(ngModel)]="answer"></textarea>
+    </mat-form-field>
+    <button
+      class="col-*"
+      mat-raised-button
+      color="primary"
+      (click)="addAnswer()"
+    >
+      Answer
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item class="green">
+    <mat-icon class="green">check</mat-icon>
+    <span>Mark as done</span>
+  </button>
+  <button mat-menu-item class="red">
+    <mat-icon class="red">clear</mat-icon>
+    <span>Delete query</span>
+  </button>
+</mat-menu>

@@ -1,10 +1,6 @@
 import { UIService } from 'src/app/services/ui.service';
 import { Component, OnInit } from '@angular/core';
-
-interface SideNav {
-  name: string;
-  icon: string;
-}
+import { SideNav } from 'src/app/services/interfaces';
 
 @Component({
   selector: 'app-side-nav',

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { SideNav } from './interfaces';
 
-interface SideNav {
-  name: string;
-  icon: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -21,19 +18,20 @@ export class UIService {
   getNavigation(): SideNav[] {
     if (true) {
       return [
-        { name: 'Connections', icon: 'group' },
-        { name: 'Queries', icon: 'contact_support' },
-        { name: 'Projects', icon: 'construction' },
-        { name: 'Groups', icon: 'connect_without_contact' },
+        { name: 'Queries', icon: 'contact_support', link: '/' },
+        { name: 'Messaging', icon: 'message', link: '/messaging' },
+        { name: 'Connections', icon: 'group', link: '/connections' },
+        { name: 'Projects', icon: 'construction', link: '/projects' },
+        { name: 'Groups', icon: 'connect_without_contact', link: '/groups' },
       ];
     }
   }
   getFixedNavigation(): SideNav[] {
     if (true) {
       return [
-        { name: 'Payments', icon: 'payments' },
-        { name: 'Notifications', icon: 'notifications' },
-        { name: 'Settings', icon: 'settings' }
+        { name: 'Payments', icon: 'payments', link: 'payments' },
+        { name: 'Notifications', icon: 'notifications', link: 'notifications' },
+        { name: 'Settings', icon: 'settings', link: 'settings' }
       ];
     }
   }

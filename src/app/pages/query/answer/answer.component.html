@@ -1,0 +1,16 @@
+<li>
+  <mat-card>
+    <mat-card-header>
+      <img
+        mat-card-avatar
+        [src]="answer.imageUrl || '../../../../assets/user.png'"
+      />
+      <mat-card-title> {{ answer.name }}</mat-card-title>
+      <mat-card-subtitle>{{ answer.company }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ answer.query }}</p>
+    </mat-card-content>
+  </mat-card>
+</li>
+<mat-divider></mat-divider>

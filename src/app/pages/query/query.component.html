@@ -1,0 +1,20 @@
+<div class="container-fluid mb-4 mr-5">
+  <div class="row align-items-center justify-content-end">
+    <div class="col-*">
+      <button class="add-query">
+        <span>Add new query</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-12">
+      <app-question
+        *ngFor="let query of queries"
+        [query]="query"
+      ></app-question>
+    </div>
+  </div>
+</div>
