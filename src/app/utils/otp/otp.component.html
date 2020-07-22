@@ -1,0 +1,96 @@
+<main class="p-2">
+  <header class="pb-4">
+    <img src="../../../assets/mentor-logo-dark.png" width="40px" />
+    <span>Mentor-Hub</span>
+  </header>
+  <div>
+    <p>Registration successful !!</p>
+    <p>One Time Password has been sent your registered email id</p>
+    <p>Please enter the OTP to verify your email id</p>
+  </div>
+
+  <mat-card class="p-2 d-flex justify-content-between">
+    <mat-form-field>
+      <input
+        #next0
+        matInput
+        [(ngModel)]="otp1"
+        type="text"
+        minlength="1"
+        maxlength="1"
+        (keyup)="changeFocus(next)"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        #next
+        matInput
+        [(ngModel)]="otp2"
+        type="text"
+        minlength="1"
+        maxlength="1"
+        (keyup)="changeFocus(next2)"
+        [readonly]="!otp1"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        #next2
+        matInput
+        [(ngModel)]="otp3"
+        type="text"
+        minlength="1"
+        maxlength="1"
+        (keyup)="changeFocus(next3)"
+        [readonly]="!otp2"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        #next3
+        matInput
+        [(ngModel)]="otp4"
+        type="text"
+        minlength="1"
+        maxlength="1"
+        (keyup)="changeFocus(next4)"
+        [readonly]="!otp3"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        #next4
+        matInput
+        [(ngModel)]="otp5"
+        type="text"
+        minlength="1"
+        maxlength="1"
+        (keyup)="changeFocus(next5)"
+        [readonly]="!otp4"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        #next5
+        matInput
+        [(ngModel)]="otp6"
+        type="text"
+        minlength="1"
+        maxlength="1"
+        (keyup)="checkOtp()"
+        [readonly]="!otp5"
+      />
+    </mat-form-field>
+  </mat-card>
+  <div>
+    <button
+      class="m-2 float-right"
+      mat-raised-button
+      color="primary"
+      [disabled]="!clear"
+      (click)="resendOtp()"
+    >
+      Resend OTP
+    </button>
+  </div>
+</main>

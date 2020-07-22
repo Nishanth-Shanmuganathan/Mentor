@@ -1,4 +1,3 @@
-<!-- <app-header (window:resize)="mobileView($event)"></app-header> -->
 <main
   [ngClass]="{ 'main-bg': isMobile }"
   class="d-flex align-items-center justify-content-center"
@@ -9,15 +8,24 @@
     class="d-flex align-items-center justify-content-center"
     *ngIf="!isMobile || (isMobile && loginView)"
   >
-    <button
-      matRipple
-      matRippleColor="#ffffff1f"
-      class="auth-buttons"
-      (click)="loginView = !loginView"
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
       *ngIf="!loginView && !isMobile"
     >
-      Login
-    </button>
+      <header class="pb-4">
+        <img src="../../../assets/mentor-logo-dark.png" width="60px" />
+        <span>Mentor-Hub</span>
+      </header>
+      <button
+        matRipple
+        matRippleColor="#ffffff1f"
+        class="auth-buttons"
+        (click)="loginView = !loginView"
+      >
+        Login
+      </button>
+    </div>
+
     <mat-card *ngIf="loginView">
       <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
         <table cellpadding="10px">
@@ -81,18 +89,27 @@
   </section>
   <section
     [ngClass]="{ 'left-cover': loginView && !isMobile }"
-    class="d-flex align-items-center justify-content-center"
+    class="d-flex flex-column align-items-center justify-content-center"
     *ngIf="!isMobile || (isMobile && !loginView)"
   >
-    <button
-      matRipple
-      matRippleColor="#ffffff1f"
-      class="auth-buttons"
-      (click)="loginView = !loginView"
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
       *ngIf="loginView && !isMobile"
     >
-      Register
-    </button>
+      <header class="pb-4">
+        <img src="../../../assets/mentor-logo-dark.png" width="60px" />
+        <span>Mentor-Hub</span>
+      </header>
+      <button
+        matRipple
+        matRippleColor="#ffffff1f"
+        class="auth-buttons"
+        (click)="loginView = !loginView"
+      >
+        Register
+      </button>
+    </div>
+
     <mat-card *ngIf="!loginView">
       <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
         <table cellpadding="10px">
@@ -148,19 +165,6 @@
                   <mat-icon>visibility_off</mat-icon>
                 </button>
                 <mat-error>Password mismatch...</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field>
-                <mat-label>Login As</mat-label>
-                <mat-select formControlName="role">
-                  <mat-option value="Start-up">Start-up</mat-option>
-                  <mat-option value="Mentor">Mentor</mat-option>
-                  <mat-option value="Student">Student</mat-option>
-                  <mat-option value="Investor">Investor</mat-option>
-                </mat-select>
               </mat-form-field>
             </td>
           </tr>

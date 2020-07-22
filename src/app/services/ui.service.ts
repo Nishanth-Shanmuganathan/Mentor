@@ -1,6 +1,9 @@
+import { OtpComponent } from './../utils/otp/otp.component';
+import { ErrorComponent } from './../utils/error/error.component';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { SideNav } from './interfaces';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Injectable({
@@ -9,7 +12,10 @@ import { SideNav } from './interfaces';
 
 export class UIService {
   mobileView = new Subject<boolean>();
-  constructor() { }
+
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
 
   isMobile() {
@@ -34,5 +40,13 @@ export class UIService {
         { name: 'Settings', icon: 'settings', link: 'settings' }
       ];
     }
+  }
+
+  errorMessage(val) {
+    const dialogRef = this.dialog.open(ErrorComponent, { disableClose: false, data: val });
+  }
+
+  otpDialog() {
+    this.dialog.open(OtpComponent, { disableClose: true });
   }
 }

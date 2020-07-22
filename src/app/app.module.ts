@@ -1,5 +1,6 @@
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -19,6 +20,9 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { AnswerComponent } from './pages/query/answer/answer.component';
 import { QuestionComponent } from './pages/query/question/question.component';
+import { ErrorComponent } from './utils/error/error.component';
+import { OtpComponent } from './utils/otp/otp.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { QuestionComponent } from './pages/query/question/question.component';
     ProjectsComponent,
     AnswerComponent,
     QuestionComponent,
+    ErrorComponent,
+    OtpComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +48,12 @@ import { QuestionComponent } from './pages/query/question/question.component';
     MaterialModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

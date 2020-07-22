@@ -1,8 +1,10 @@
+import { AuthCred } from './../../services/interfaces';
+import { AuthService } from './../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { UIService } from './../../services/ui.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, Route } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-layout',
@@ -21,7 +23,8 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
   mobileViewSubscription: Subscription;
   constructor(
     private route: Router,
-    private UIService: UIService
+    private UIService: UIService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +44,6 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
       email: new FormControl('nishanths.17it@kongu.edu', [Validators.required, Validators.email]),
       password: new FormControl('nishanth', [Validators.required, Validators.minLength(8)]),
       confirmPassword: new FormControl('nishanth', [Validators.required, Validators.minLength(8), this.confirmPassword.bind(this)]),
-      role: new FormControl('Start-up', [Validators.required]),
     });
   }
 
@@ -62,15 +64,28 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
   login(form: FormGroup) {
     if (form.invalid) { return; }
     console.log(form.value);
+
     // form.reset();
-    this.route.navigate(['/']);
+    // this.route.navigate(['/']);
   }
 
   register(form: FormGroup) {
 
     if (form.invalid) { return; }
-    console.log(form.value);
-    this.route.navigate(['/']);
+
+    const regCred: AuthCred = {
+      email: form.value.email,
+      password: form.value.password,
+      confirmPassword: form.value.confirmPassword,
+    };
+
+    this.authService.register(regCred).subscribe(res => {
+      console.log(res);
+      this.UIService.otpDialog();
+    }, err => {
+      this.UIService.errorMessage(err.error.message);
+      console.log(err.error.message);
+    });
   }
 
   ngOnDestroy(): void {

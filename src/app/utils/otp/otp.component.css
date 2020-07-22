@@ -1,0 +1,26 @@
+header>span {
+  font-size: large;
+  font-family: 'Fondamento',
+    cursive;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  /* position: absolute; */
+  /* background-color: aqua; */
+  /* left: 50%; */
+}
+
+mat-form-field {
+  min-width: 10% !important;
+  max-width: 10px !important;
+  text-align: center !important;
+}
+
+mat-card {
+  margin: auto;
+  width: 100%;
+}

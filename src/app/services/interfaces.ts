@@ -11,3 +11,9 @@ export interface SideNav {
   icon: string;
   link: string;
 }
+
+export interface AuthCred {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}

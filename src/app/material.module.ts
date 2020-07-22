@@ -13,6 +13,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const Modules = [
   MatToolbarModule,
@@ -27,7 +28,8 @@ const Modules = [
   MatTreeModule,
   MatListModule,
   MatRippleModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatDialogModule
 ];
 
 @NgModule({
