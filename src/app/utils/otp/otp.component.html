@@ -10,7 +10,7 @@
   </div>
 
   <mat-card class="p-2 d-flex justify-content-between">
-    <mat-form-field>
+    <mat-form-field [ngClass]="{ error: error }">
       <input
         #next0
         matInput
@@ -21,7 +21,7 @@
         (keyup)="changeFocus(next)"
       />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field [ngClass]="{ error: error }">
       <input
         #next
         matInput
@@ -33,7 +33,7 @@
         [readonly]="!otp1"
       />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field [ngClass]="{ error: error }">
       <input
         #next2
         matInput
@@ -45,7 +45,7 @@
         [readonly]="!otp2"
       />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field [ngClass]="{ error: error }">
       <input
         #next3
         matInput
@@ -57,7 +57,7 @@
         [readonly]="!otp3"
       />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field [ngClass]="{ error: error }">
       <input
         #next4
         matInput
@@ -69,7 +69,7 @@
         [readonly]="!otp4"
       />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field [ngClass]="{ error: error }">
       <input
         #next5
         matInput
@@ -82,7 +82,10 @@
       />
     </mat-form-field>
   </mat-card>
-  <div>
+  <div class="d-flex flex-column align-items-center">
+    <span *ngIf="error" class="p-2 text-danger text-center">
+      OTP is incorrect !!</span
+    >
     <button
       class="m-2 float-right"
       mat-raised-button
