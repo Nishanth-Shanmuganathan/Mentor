@@ -42,11 +42,23 @@ export class UIService {
     }
   }
 
-  errorMessage(val) {
-    const dialogRef = this.dialog.open(ErrorComponent, { disableClose: false, data: val });
+  errorMessage(val: string) {
+    this.dialog.open(ErrorComponent,
+      {
+        width: 'fit-content',
+        minWidth: '250px',
+        height: 'fit-content',
+        hasBackdrop: false,
+        position: { top: '10px', right: '10px' },
+        disableClose: true,
+        data: val
+      });
   }
 
   otpDialog() {
     this.dialog.open(OtpComponent, { disableClose: true });
+  }
+  closeModals() {
+    this.dialog.closeAll();
   }
 }

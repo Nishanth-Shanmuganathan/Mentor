@@ -5,7 +5,7 @@
 >
   <section
     [ngClass]="{ 'right-cover': !loginView && !isMobile }"
-    class="d-flex align-items-center justify-content-center"
+    class="d-flex flex-column align-items-center justify-content-center"
     *ngIf="!isMobile || (isMobile && loginView)"
   >
     <div
@@ -25,7 +25,10 @@
         Login
       </button>
     </div>
-
+    <header class="pb-4" *ngIf="loginView && isMobile">
+      <img src="../../../assets/mentor-logo.png" width="60px" />
+      <span class="login-logo">Mentor-Hub</span>
+    </header>
     <mat-card *ngIf="loginView">
       <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
         <table cellpadding="10px">
@@ -109,7 +112,10 @@
         Register
       </button>
     </div>
-
+    <header class="pb-4" *ngIf="!loginView && isMobile">
+      <img src="../../../assets/mentor-logo.png" width="60px" />
+      <span class="login-logo">Mentor-Hub</span>
+    </header>
     <mat-card *ngIf="!loginView">
       <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
         <table cellpadding="10px">

@@ -14,13 +14,15 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  login(cred) {
-    const login = cred;
-    return this.http.post(environment.server + '/auth/login', login);
+  login(cred: AuthCred) {
+    return this.http.post<{ token: string }>(environment.server + '/auth/login', cred)
+      .pipe(tap(res => {
+        localStorage.setItem('token', res.token);
+      }));
   }
 
   register(cred: AuthCred) {
-    return this.http.post<{ token }>(environment.server + '/auth/email-register', cred)
+    return this.http.post<{ token: string }>(environment.server + '/auth/email-register', cred)
       .pipe(tap(res => {
         localStorage.setItem('token', res.token);
       }));

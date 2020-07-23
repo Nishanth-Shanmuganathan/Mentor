@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 @Injectable()
-export class LoginGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
 
   constructor(
     // private authService: AuthService,
@@ -14,13 +14,11 @@ export class LoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    // this.authService.getToken();
-    // const isAuth = this.authService.token && this.authService.username && this.authService.email ? true : false;
-    // if (!isAuth) {
-    //   this.authService.logout();
-    //   this.router.navigate(['/auth']);
-    // }
-    // return isAuth;
+    const token = localStorage.getItem('token');
+    console.log(!token);
+    if (!token) {
+      return this.router.navigate['/auth'];
+    }
     return true;
   }
 

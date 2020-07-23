@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth.gaurd';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { ConnectionComponent } from './pages/connection/connection.component';
@@ -13,7 +14,7 @@ import { QueryComponent } from './pages/query/query.component';
 const routes: Routes = [
   { path: 'auth', component: AuthLayoutComponent },
   {
-    path: '', component: MentorLayoutComponent,
+    path: '', component: MentorLayoutComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: QueryComponent },
       { path: 'messaging', component: MessagingComponent },

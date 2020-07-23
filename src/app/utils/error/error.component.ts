@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-error',
@@ -6,10 +7,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent implements OnInit {
-  @Input() data: string;
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: string,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.closeError();
+    }, 5000);
+  }
+
+  closeError() {
+    this.dialog.closeAll();
   }
 
 }

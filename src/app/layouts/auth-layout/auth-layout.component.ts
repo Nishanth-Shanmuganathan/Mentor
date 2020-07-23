@@ -28,6 +28,7 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('token')
     this.mobileViewSubscription = this.UIService.mobileView.subscribe(res => {
       this.isMobile = res;
     });
@@ -37,7 +38,7 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     // reactive form definition
     this.loginForm = new FormGroup({
       email: new FormControl('nishanths.17it@kongu.edu', [Validators.required, Validators.email]),
-      password: new FormControl('aaaassss', [Validators.required, Validators.minLength(8)])
+      password: new FormControl('nishanth', [Validators.required, Validators.minLength(8)])
     });
 
     this.registerForm = new FormGroup({
@@ -63,8 +64,17 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
 
   login(form: FormGroup) {
     if (form.invalid) { return; }
-    console.log(form.value);
+    const loginCred: AuthCred = {
+      email: form.value.email,
+      password: form.value.password,
+    };
 
+    this.authService.login(loginCred).subscribe(res => {
+      console.log(res);
+      this.route.navigate(['/']);
+    }, err => {
+      this.UIService.errorMessage(err.error.message);
+    });
     // form.reset();
     // this.route.navigate(['/']);
   }
