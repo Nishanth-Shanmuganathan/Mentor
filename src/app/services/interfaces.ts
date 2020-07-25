@@ -17,3 +17,25 @@ export interface AuthCred {
   password: string;
   confirmPassword?: string;
 }
+
+export interface Details {
+  username: string;
+  mobile: string;
+  role: string;
+  city: string;
+  country: string;
+  profilePic?: string;
+  professional: {
+    company: string,
+    domain: string,
+    experience?: number,
+    employees?: number,
+    preference?: string,
+    position?: string,
+    ctc?: number,
+  };
+}
+
+export interface Domain {
+  domain: string[];
+}

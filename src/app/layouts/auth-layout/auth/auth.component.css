@@ -1,0 +1,64 @@
+main {
+  height: 100vh;
+}
+
+section {
+  width: 50%;
+  height: 100%;
+}
+
+.button {
+  text-align: center;
+}
+
+td {
+  padding: 10px 20px;
+}
+
+.auth-buttons {
+  width: 150px;
+  height: 40px;
+  color: white;
+  border: 0px;
+  border-radius: 50px;
+  background-color: black;
+}
+
+.right-cover {
+  background-image: linear-gradient(to left, rgba(255, 0, 0, 0), rgb(0, 0, 0, 0.8));
+}
+
+.left-cover {
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.8));
+}
+
+.main-bg {
+  /* background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)); */
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.grad-buttons {
+  color: black;
+  background-color: rgb(236, 236, 236);
+}
+
+header>span {
+  font-size: xx-large;
+  font-family: 'Fondamento',
+    cursive;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
+  /* background-color: aqua; */
+  /* left: 50%; */
+}
+
+.login-logo {
+  white-space: nowrap;
+  color: white;
+}

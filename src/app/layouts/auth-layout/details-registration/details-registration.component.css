@@ -1,0 +1,16 @@
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: black;
+}
+
+.primary {
+  background-color: black;
+  color: white;
+}
+
+/* .row, */
+mat-card {
+  width: 100%;
+  height: inherit !important;
+}

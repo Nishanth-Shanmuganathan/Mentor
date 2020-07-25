@@ -18,12 +18,6 @@ export class QueryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.uiService.mobileView.subscribe(res => {
-      this.isMobile = res;
-      // showing text if screen is mobile
-    });
-    this.uiService.isMobile();
-
     this.queries = this.queryService.fetchQueries();
   }
 

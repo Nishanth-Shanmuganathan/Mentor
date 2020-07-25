@@ -1,7 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-otp',
@@ -23,7 +23,8 @@ export class OtpComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +38,7 @@ export class OtpComponent implements OnInit {
       this.authService.checkOtp(otp).subscribe(res => {
         this.clear = true;
         this.dialog.closeAll();
-        this.route.navigate(['/']);
+        this.route.navigate(['auth', 'details']);
       }, err => {
         this.otp1 = null;
         this.otp2 = null;
@@ -64,4 +65,4 @@ export class OtpComponent implements OnInit {
       this.clear = true;
     });
   }
-}
+};
