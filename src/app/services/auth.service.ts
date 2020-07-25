@@ -4,7 +4,7 @@ import { tap } from 'rxjs/operators';
 
 
 import { environment } from './../../environments/environment';
-import { AuthCred } from './interfaces';
+import { AuthCred, Details } from './interfaces';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +27,12 @@ export class AuthService {
         localStorage.setItem('token', res.token);
       }));
   }
+
+  registerDetails(cred: Details) {
+    console.log('hii');
+    return this.http.post<{ message: string }>(environment.server + '/auth/register', cred);
+  }
+
 
   checkOtp(otp) {
     console.log(otp);

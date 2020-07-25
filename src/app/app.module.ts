@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './utils/header/header.component';
@@ -21,9 +22,9 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { AnswerComponent } from './pages/query/answer/answer.component';
 import { QuestionComponent } from './pages/query/question/question.component';
-import { ErrorComponent } from './utils/error/error.component';
-import { OtpComponent } from './utils/otp/otp.component';
-import { AuthInterceptor } from './services/auth.interceptor';
+// import { ErrorComponent } from './utils/error/error.component';
+// import { OtpComponent } from './utils/otp/otp.component';
+// import { DetailsRegistrationComponent } from './layouts/auth-layout/details-registration/details-registration.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +40,9 @@ import { AuthInterceptor } from './services/auth.interceptor';
     ProjectsComponent,
     AnswerComponent,
     QuestionComponent,
-    ErrorComponent,
-    OtpComponent,
+    // ErrorComponent,
+    // OtpComponent,
+    // DetailsRegistrationComponent,
   ],
   imports: [
     BrowserModule,

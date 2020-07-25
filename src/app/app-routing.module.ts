@@ -7,12 +7,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MentorLayoutComponent } from './layouts/mentor-layout/mentor-layout.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-
 import { QueryComponent } from './pages/query/query.component';
 
 const routes: Routes = [
-  { path: 'auth', component: AuthLayoutComponent },
+  { path: 'auth', loadChildren: () => import('./layouts/auth-layout/auth-layout-component.module').then(mod => mod.AuthLayoutModule) },
   {
     path: '', component: MentorLayoutComponent, canActivate: [AuthGuard],
     children: [

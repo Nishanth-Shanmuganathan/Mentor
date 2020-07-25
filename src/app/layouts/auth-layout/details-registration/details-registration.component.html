@@ -1,0 +1,235 @@
+<div class="container-fluid">
+  <div class="row main justify-content-center">
+    <mat-card class="col-11 mt-3 mb-3 mt-md-5 mb-md-5">
+      <mat-card-header class="m-3">
+        <mat-card-title>
+          Registration Form
+        </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <div class="pt-3">
+          <form
+            #firstForm
+            [formGroup]="firstFormGroup"
+            (ngSubmit)="sendDetails()"
+            class="row ml-3 mr-3 pb-3 d-flex justify-content-start align-items-center"
+          >
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="Albert Einstein"
+                formControlName="username"
+                required
+              />
+            </mat-form-field>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Logging In as</mat-label>
+              <mat-select formControlName="role" required>
+                <mat-option value="Start-up">Start-up</mat-option>
+                <mat-option value="Mentor">Mentor</mat-option>
+                <mat-option value="Investor">Investor</mat-option>
+                <mat-option value="Student">Student</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="col-12 col-md-4 p-2"></div>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <input
+                type="text"
+                placeholder="Country"
+                matInput
+                formControlName="country"
+                [matAutocomplete]="country"
+                required
+              />
+              <mat-autocomplete #country="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <input
+                type="text"
+                placeholder="City"
+                matInput
+                formControlName="city"
+                [matAutocomplete]="city"
+                required
+              />
+              <mat-autocomplete #city="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Mobile number</mat-label>
+              <input
+                matInput
+                placeholder="9876543210"
+                formControlName="mobile"
+                minlength="10"
+                maxlength="10"
+                required
+              />
+            </mat-form-field>
+          </form>
+
+          <mat-divider></mat-divider>
+
+          <form
+            *ngIf="firstFormGroup.value.role === 'Mentor'"
+            [formGroup]="mentorForm"
+            class="row mt-4 ml-3 mr-3 pb-3 d-flex justify-content-start align-items-center"
+            (ngSubmit)="sendDetails()"
+          >
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Position</mat-label>
+              <input
+                matInput
+                formControlName="position"
+                placeholder="Senior Manager..."
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Company Name</mat-label>
+              <input
+                matInput
+                formControlName="company"
+                placeholder="Google..."
+                required
+              />
+            </mat-form-field>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Experience</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="experience"
+                min="1"
+                required
+              />
+            </mat-form-field>
+
+            <div class="d-none d-sm-block d-md-none col-sm-6"></div>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Select your preference</mat-label>
+              <mat-select required formControlName="preference">
+                <mat-option value="guidance">Guidance only</mat-option>
+                <mat-option value="project"
+                  >Project collaboration only</mat-option
+                >
+                <mat-option value="both">
+                  Both guidance and project collaboration</mat-option
+                >
+              </mat-select>
+              <mat-hint
+                >Since you are a Mentor, you can help the start-ups by providing
+                guidance and also collaborating with their projects.</mat-hint
+              >
+            </mat-form-field>
+
+            <div class="col-12 col-sm-6 col-md-4 pt-4 pt-sm-2 p-2">
+              <mat-label>CTC expected for Project Collaboration</mat-label
+              ><mat-slider
+                style="width: 100%;"
+                formControlName="ctc"
+                [min]="0"
+                [max]="10"
+                color="primary"
+                thumbLabel
+                [displayWith]="formatLabel"
+              ></mat-slider>
+            </div>
+
+            <div class="col-12 col-md-4 p-2"></div>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Select your domain</mat-label>
+              <mat-select required formControlName="domain">
+                <mat-option [value]="domain" *ngFor="let domain of domains">{{
+                  domain
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="col-12 row justify-content-end">
+              <button mat-raised-button class="col-*" color="primary">
+                Save
+              </button>
+            </div>
+          </form>
+
+          <form
+            *ngIf="firstFormGroup.value.role === 'Start-up'"
+            [formGroup]="startupForm"
+            class="row mt-4 ml-3 mr-3 pb-3 d-flex justify-content-start align-items-center"
+            (ngSubmit)="sendDetails()"
+          >
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Company Name</mat-label>
+              <input
+                matInput
+                placeholder="Albert Einstein"
+                formControlName="company"
+                required
+              />
+            </mat-form-field>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Company size (No. of employees)</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="employees"
+                min="1"
+                max="50"
+                required
+              />
+            </mat-form-field>
+
+            <div class="d-none d-md-block col-12 col-sm-6 col-md-4 p-2"></div>
+
+            <div class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>CTC range for Project Collaborations</mat-label
+              ><mat-slider
+                style="width: 100%;"
+                formControlName="ctc"
+                [min]="0"
+                [max]="10"
+                color="primary"
+                thumbLabel
+                [displayWith]="formatLabel"
+              ></mat-slider>
+            </div>
+
+            <mat-form-field class="col-12 col-sm-6 col-md-4 p-2">
+              <mat-label>Select your domain</mat-label>
+              <mat-select required formControlName="domain">
+                <mat-option [value]="domain" *ngFor="let domain of domains">{{
+                  domain
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="col-12 row justify-content-end">
+              <button mat-raised-button class="col-*" color="primary">
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
