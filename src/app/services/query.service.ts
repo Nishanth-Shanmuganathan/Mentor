@@ -22,12 +22,23 @@ export class QueryService {
 
 
   addQueries(query: { query: string; domain: string; }) {
-    console.log(query);
     return this.http.post<{ message: string, query: Query }>(environment.server + '/queries', query)
       .pipe(tap(res => {
         this.queries.unshift(res.query);
         this.querySubject.next(this.queries);
       }));
+  }
+
+  deleteQueries(id: string) {
+    this.http.delete<{ message: string }>(environment.server + '/queries/' + id)
+      .subscribe(res => {
+        this.uiService.errorMessage(res.message);
+        const index = this.queries.findIndex(ele => ele._id == id);
+        this.queries.splice(index, 1);
+        this.querySubject.next(this.queries);
+      }, err => {
+        this.uiService.errorMessage(err.error.message);
+      });
   }
 
   fetchQueries() {
@@ -36,7 +47,7 @@ export class QueryService {
         this.queries = res.queries;
         this.querySubject.next(this.queries);
       }, err => {
-        this.uiService.errorMessage(err.error.message);
+        // this.uiService.errorMessage(err.error.message);
       });
   }
 
@@ -50,4 +61,6 @@ export class QueryService {
         this.querySubject.next(this.queries);
       }));
   }
+
+
 }

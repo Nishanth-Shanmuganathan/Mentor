@@ -23,6 +23,9 @@ export class QuestionComponent implements OnInit {
     this.user = this.authService.user;
   }
 
+  deleteQuery(id) {
+    this.queryService.deleteQueries(id);
+  }
   addAnswer() {
     if (this.answer) {
       this.queryService.addAnswers(this.query._id, this.answer)
