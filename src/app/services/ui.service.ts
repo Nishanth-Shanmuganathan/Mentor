@@ -63,6 +63,7 @@ export class UIService {
   otpDialog() {
     this.dialog.open(OtpComponent, { disableClose: true });
   }
+
   closeModals() {
     this.dialog.closeAll();
   }

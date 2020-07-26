@@ -1,10 +1,28 @@
 export interface Query {
-  id: string;
-  name: string;
+  _id: string;
+  domain: string;
+  query: string;
+  author: {
+    username: string;
+    roleDetails: {
+      company: string,
+    };
+  };
+  imageUrl: string;
+  // experience?: number;
+  // employees?: number;
+  // preference?: string;
+  // position?: string;
+  // ctc?: number;
+  comments?: Answer[];
+}
+
+export interface Answer {
+  imageUrl: string;
+  username: string;
   company: string;
   query: string;
-  imageUrl: string;
-  answers?: Query[];
+  _id: string;
 }
 export interface SideNav {
   name: string;

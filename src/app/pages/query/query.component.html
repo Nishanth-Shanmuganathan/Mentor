@@ -1,7 +1,7 @@
 <div class="container-fluid mb-4 mr-5" *ngIf="user.role === 'Start-up'">
   <div class="row align-items-center justify-content-end">
     <div class="col-* pr-3">
-      <button class="add-query">
+      <button class="add-query" (click)="openAddQuery()">
         <span>Add new query</span>
       </button>
     </div>

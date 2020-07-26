@@ -22,6 +22,7 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { AnswerComponent } from './pages/query/answer/answer.component';
 import { QuestionComponent } from './pages/query/question/question.component';
+import { AddQueryComponent } from './pages/query/add-query/add-query.component';
 // import { ErrorComponent } from './utils/error/error.component';
 // import { OtpComponent } from './utils/otp/otp.component';
 // import { DetailsRegistrationComponent } from './layouts/auth-layout/details-registration/details-registration.component';
@@ -40,6 +41,7 @@ import { QuestionComponent } from './pages/query/question/question.component';
     ProjectsComponent,
     AnswerComponent,
     QuestionComponent,
+    AddQueryComponent,
     // ErrorComponent,
     // OtpComponent,
     // DetailsRegistrationComponent,

@@ -4,8 +4,10 @@
       [src]="query.imageUrl || '../../../../assets/user.png'"
       mat-card-avatar
     />
-    <mat-card-title>{{ query.name }} </mat-card-title>
-    <mat-card-subtitle>{{ query.company }}</mat-card-subtitle>
+    <mat-card-title>{{ query.author.username }} </mat-card-title>
+    <mat-card-subtitle>{{
+      query.author.roleDetails.company
+    }}</mat-card-subtitle>
 
     <button
       mat-icon-button
@@ -18,7 +20,7 @@
   </mat-card-header>
   <mat-card-content (click)="showAnswers = !showAnswers">
     <p>{{ query.query }}</p>
-    <div *ngIf="query.answers" class="row justify-content-center">
+    <div *ngIf="query.comments.length" class="row justify-content-center">
       <div class="col-*">
         <mat-icon *ngIf="!showAnswers" class="text-muted">expand_more</mat-icon>
         <mat-icon *ngIf="showAnswers" class="text-muted">expand_less</mat-icon>
@@ -27,11 +29,11 @@
     <ng-container>
       <div
         class="row answers justify-content-end justify-content-md-around align-items-center"
-        *ngIf="showAnswers && query.answers?.length !== 0"
+        *ngIf="showAnswers && query.comments?.length !== 0"
       >
         <div class="col-11 col-md-10">
           <app-answer
-            *ngFor="let answer of query.answers"
+            *ngFor="let answer of query.comments"
             [answer]="answer"
           ></app-answer>
         </div>
@@ -40,8 +42,12 @@
   </mat-card-content>
   <mat-card-actions class="row">
     <mat-form-field class="col-6">
-      <mat-label>Comment..</mat-label>
-      <textarea matInput name="answer" [(ngModel)]="answer"></textarea>
+      <textarea
+        matInput
+        name="answer"
+        [(ngModel)]="answer"
+        placeholder="Post your comment"
+      ></textarea>
     </mat-form-field>
     <button
       class="col-*"

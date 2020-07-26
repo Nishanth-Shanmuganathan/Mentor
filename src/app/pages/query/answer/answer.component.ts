@@ -1,3 +1,4 @@
+import { Answer } from './../../../services/interfaces';
 import { Component, OnInit, Input } from '@angular/core';
 import { Query } from 'src/app/services/interfaces';
 
@@ -7,7 +8,7 @@ import { Query } from 'src/app/services/interfaces';
   styleUrls: ['./answer.component.css']
 })
 export class AnswerComponent implements OnInit {
-  @Input() answer: Query;
+  @Input() answer: Answer;
   constructor() { }
 
   ngOnInit(): void {

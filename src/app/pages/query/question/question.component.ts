@@ -25,7 +25,10 @@ export class QuestionComponent implements OnInit {
 
   addAnswer() {
     if (this.answer) {
-      this.queryService.addAnswers(this.query.id, this.answer);
+      this.queryService.addAnswers(this.query._id, this.answer)
+        .subscribe(res => {
+          this.answer = null;
+        });
     }
   }
 }
