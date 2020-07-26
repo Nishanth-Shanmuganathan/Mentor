@@ -26,6 +26,10 @@ export class QuestionComponent implements OnInit {
   deleteQuery(id) {
     this.queryService.deleteQueries(id);
   }
+
+  deleteComment(commentId: string, queryId: string) {
+    this.queryService.deleteAnswers(commentId, queryId);
+  }
   addAnswer() {
     if (this.answer) {
       this.queryService.addAnswers(this.query._id, this.answer)

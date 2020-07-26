@@ -1,5 +1,6 @@
+import { QueryService } from 'src/app/services/query.service';
 import { Answer } from './../../../services/interfaces';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Query } from 'src/app/services/interfaces';
 
 @Component({
@@ -9,10 +10,10 @@ import { Query } from 'src/app/services/interfaces';
 })
 export class AnswerComponent implements OnInit {
   @Input() answer: Answer;
+  @Output() commentId = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
-
   }
 
 }

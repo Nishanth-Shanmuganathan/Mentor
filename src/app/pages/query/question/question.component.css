@@ -25,6 +25,6 @@ button[mat-menu-item].green,
   color: green;
 }
 
-mat-card-content {
+.show-answers {
   cursor: pointer;
 }

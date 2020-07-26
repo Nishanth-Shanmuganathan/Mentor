@@ -62,5 +62,22 @@ export class QueryService {
       }));
   }
 
+  deleteAnswers(commentId: string, queryId: string) {
+    console.log(this.queries.findIndex(query => query._id === queryId));
+    this.http.delete<{ message: string }>(environment.server + '/queries/' + queryId + '/' + commentId)
+      .subscribe(res => {
+        this.uiService.errorMessage(res.message);
+        const queryIndex = this.queries.findIndex(query => query._id == queryId);
+        this.queries[queryIndex].comments.forEach((comment, index) => {
+          if (comment._id == commentId) {
+            this.queries[queryIndex].comments.splice(index, 1);
+            return;
+          }
+        });
+        this.querySubject.next(this.queries);
+      }, err => {
+        this.uiService.errorMessage(err.error.message);
+      });
+  }
 
 }

@@ -5,6 +5,14 @@
         mat-card-avatar
         [src]="answer.imageUrl || '../../../../assets/user.png'"
       />
+      <button
+        mat-icon-button
+        color="primary"
+        class="top_right text-danger"
+        (click)="commentId.emit(answer._id)"
+      >
+        <mat-icon>delete_outline</mat-icon>
+      </button>
       <mat-card-title> {{ answer.username }}</mat-card-title>
       <mat-card-subtitle>{{ answer.company }}</mat-card-subtitle>
     </mat-card-header>

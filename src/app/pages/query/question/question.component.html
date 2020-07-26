@@ -18,9 +18,13 @@
       <mat-icon>more_vert </mat-icon>
     </button>
   </mat-card-header>
-  <mat-card-content (click)="showAnswers = !showAnswers">
+  <mat-card-content>
     <p>{{ query.query }}</p>
-    <div *ngIf="query.comments.length" class="row justify-content-center">
+    <div
+      *ngIf="query.comments.length"
+      class="show-answers row justify-content-center"
+      (click)="showAnswers = !showAnswers"
+    >
       <div class="col-*">
         <mat-icon *ngIf="!showAnswers" class="text-muted">expand_more</mat-icon>
         <mat-icon *ngIf="showAnswers" class="text-muted">expand_less</mat-icon>
@@ -35,6 +39,7 @@
           <app-answer
             *ngFor="let answer of query.comments"
             [answer]="answer"
+            (commentId)="deleteComment($event, query._id)"
           ></app-answer>
         </div>
       </div>
