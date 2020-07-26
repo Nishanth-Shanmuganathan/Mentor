@@ -12,8 +12,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
   data: SideNav[];
   fixedData: SideNav[];
   isMobile: boolean;
-
-  mobileSubscription: Subscription;
+  mobileViewSubscription: Subscription;
   constructor(
     private uiService: UIService
   ) {
@@ -23,14 +22,15 @@ export class SideNavComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.data = this.uiService.getNavigation();
     this.fixedData = this.uiService.getFixedNavigation();
-    this.mobileSubscription = this.uiService.mobileView.subscribe(res => {
-      this.isMobile = res;
+    this.mobileViewSubscription = this.uiService.mobileView.subscribe(isMobile => {
+      this.isMobile = isMobile;
     });
-    this.uiService.isMobile();
   }
 
   ngOnDestroy() {
-    this.mobileSubscription.unsubscribe();
+    if (this.mobileViewSubscription) {
+      this.mobileViewSubscription.unsubscribe();
+    }
   }
 
 }

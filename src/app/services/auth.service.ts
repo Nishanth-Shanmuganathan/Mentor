@@ -4,26 +4,32 @@ import { tap } from 'rxjs/operators';
 
 
 import { environment } from './../../environments/environment';
-import { AuthCred, Details } from './interfaces';
+import { AuthCred, Details, User } from './interfaces';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  user: User;
+  isAuth = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   constructor(
     private http: HttpClient
   ) { }
 
   login(cred: AuthCred) {
-    return this.http.post<{ token: string }>(environment.server + '/auth/login', cred)
+    return this.http.post<{ token: string, user: User }>(environment.server + '/auth/login', cred)
       .pipe(tap(res => {
+        this.user = res.user;
         localStorage.setItem('token', res.token);
       }));
   }
 
   register(cred: AuthCred) {
-    return this.http.post<{ token: string }>(environment.server + '/auth/email-register', cred)
+    return this.http.post<{ token: string, user: User }>(environment.server + '/auth/email-register', cred)
       .pipe(tap(res => {
+        this.user = res.user;
         localStorage.setItem('token', res.token);
       }));
   }

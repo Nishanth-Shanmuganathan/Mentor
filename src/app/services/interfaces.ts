@@ -36,6 +36,20 @@ export interface Details {
   };
 }
 
-export interface Domain {
-  domain: string[];
+export interface User {
+  username: string;
+  mobile: string;
+  email: string;
+  role: string;
+  emailVerified: string;
+  country: string;
+  city: string;
+  roleDetails: {
+    company: string,
+    domain: string,
+    position?: string;
+    employees?: number,
+    experience?: number,
+    ctc?: number
+  };
 }

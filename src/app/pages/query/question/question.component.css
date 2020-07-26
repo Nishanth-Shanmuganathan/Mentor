@@ -24,3 +24,7 @@ button[mat-menu-item].green,
 .green {
   color: green;
 }
+
+mat-card-content {
+  cursor: pointer;
+}

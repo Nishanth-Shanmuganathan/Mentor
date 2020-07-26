@@ -29,11 +29,10 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.removeItem('token');
-    this.mobileViewSubscription = this.uiService.mobileView.subscribe(res => {
-      this.isMobile = res;
+    this.mobileViewSubscription = this.uiService.mobileView.subscribe(isMobile => {
+      this.isMobile = isMobile;
     });
 
-    this.uiService.isMobile();
 
     // reactive form definition
     this.loginForm = new FormGroup({
@@ -72,6 +71,7 @@ export class AuthComponent implements OnInit {
     this.authService.login(loginCred).subscribe(res => {
       console.log(res);
       form.reset();
+      this.uiService.errorMessage('Login successful');
       this.route.navigate(['/']);
     }, err => {
       form.reset();
@@ -99,6 +99,8 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.mobileViewSubscription.unsubscribe();
+    if (this.mobileViewSubscription) {
+      this.mobileViewSubscription.unsubscribe();
+    }
   }
 }

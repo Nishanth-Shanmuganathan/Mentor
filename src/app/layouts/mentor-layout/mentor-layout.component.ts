@@ -9,24 +9,25 @@ import { Subscription } from 'rxjs';
 })
 export class MentorLayoutComponent implements OnInit, OnDestroy {
   isMobile: boolean;
-  viewSubscription: Subscription;
+  mobileViewSubscription: Subscription;
   constructor(
     private uiService: UIService
   ) { }
 
   ngOnInit(): void {
-    this.viewSubscription = this.uiService.mobileView.subscribe(res => {
-      this.isMobile = res;
+    this.mobileViewSubscription = this.uiService.mobileView.subscribe(isMobile => {
+      this.isMobile = isMobile;
     });
-    this.uiService.isMobile();
   }
+
   mobileView() {
     this.uiService.isMobile();
-
   }
 
   ngOnDestroy(): void {
-    this.viewSubscription.unsubscribe();
+    if (this.mobileViewSubscription) {
+      this.mobileViewSubscription.unsubscribe();
+    }
   }
 
 

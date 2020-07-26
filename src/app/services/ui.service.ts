@@ -1,7 +1,7 @@
 import { OtpComponent } from './../utils/otp/otp.component';
 import { ErrorComponent } from './../utils/error/error.component';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { SideNav } from './interfaces';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -11,7 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 export class UIService {
-  mobileView = new Subject<boolean>();
+  mobileView = new BehaviorSubject<boolean>(window.innerWidth < 700);
+  currentView: boolean = undefined;
 
   constructor(
     private dialog: MatDialog
@@ -19,7 +20,12 @@ export class UIService {
 
 
   isMobile() {
-    return this.mobileView.next(window.innerWidth < 700);
+    const incomingViewChange = window.innerWidth < 700;
+    if (this.currentView === undefined || this.currentView !== incomingViewChange) {
+      this.currentView = incomingViewChange;
+      return this.mobileView.next(window.innerWidth < 700);
+    }
+    console.log('Same');
   }
   getNavigation(): SideNav[] {
     if (true) {

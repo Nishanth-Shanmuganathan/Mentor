@@ -10,9 +10,9 @@ export class QueryService {
     {
       id: '3', name: 'Nishanth Shanmuganathan', company: 'Theeran Infotech', imageUrl: '../../../../assets/jlpt.jpg',
       query: 'What is your salary? Are you happy with it?I am 24 years old.I am working as a software developer in an MNC.Currently, my inhand salary is around 65k.I am living a decent life in high tech city of India - Hyderabad.',
-      answers: [
-        { id: '31', name: 'Lalitha K', company: 'Kongu Engineering College', imageUrl: '', query: 'I was dispirited by the circumstances. I felt like all my hard work over the years went in vain. After the 12th boards, where my friends were getting presents for getting passed or a good performance, I did not get education of my choice.' }
-      ]
+      // answers: [
+      //   { id: '31', name: 'Lalitha K', company: 'Kongu Engineering College', imageUrl: '', query: 'I was dispirited by the circumstances. I felt like all my hard work over the years went in vain. After the 12th boards, where my friends were getting presents for getting passed or a good performance, I did not get education of my choice.' }
+      // ]
     },
     {
       id: '2', name: 'Ashwanth Shanmuganathan', company: 'Theeran Infotech', imageUrl: '../../../../assets/jlpt.jpg',

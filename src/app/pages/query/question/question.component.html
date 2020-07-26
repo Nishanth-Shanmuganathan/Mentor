@@ -18,10 +18,16 @@
   </mat-card-header>
   <mat-card-content (click)="showAnswers = !showAnswers">
     <p>{{ query.query }}</p>
+    <div *ngIf="query.answers" class="row justify-content-center">
+      <div class="col-*">
+        <mat-icon *ngIf="!showAnswers" class="text-muted">expand_more</mat-icon>
+        <mat-icon *ngIf="showAnswers" class="text-muted">expand_less</mat-icon>
+      </div>
+    </div>
     <ng-container>
       <div
         class="row answers justify-content-end justify-content-md-around align-items-center"
-        *ngIf="showAnswers && query.answers.length !== 0"
+        *ngIf="showAnswers && query.answers?.length !== 0"
       >
         <div class="col-11 col-md-10">
           <app-answer

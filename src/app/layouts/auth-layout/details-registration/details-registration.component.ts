@@ -1,6 +1,7 @@
+import { UIService } from 'src/app/services/ui.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
-import { Domain, Details } from './../../../services/interfaces';
+import { Details } from './../../../services/interfaces';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 
@@ -29,6 +30,7 @@ export class DetailsRegistrationComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private uiService: UIService,
     private route: Router
   ) { }
 
@@ -107,10 +109,10 @@ export class DetailsRegistrationComponent implements OnInit {
     }
 
     this.authService.registerDetails(details).subscribe(res => {
-      console.log(res);
+      this.uiService.errorMessage(res.message);
       this.route.navigate(['']);
     }, err => {
-      console.log(err);
+      console.log(err.message);
     });
   }
 
