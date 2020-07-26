@@ -16,8 +16,10 @@ mat-drawer {
 
 .router-outlet {
   padding: 10px;
-  width: 100%;
-  height: 100%;
   background-color: black;
+  position: absolute;
+}
 
+mat-drawer-container {
+  /* flex: 1 1 auto; */
 }
