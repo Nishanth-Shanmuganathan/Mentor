@@ -1,3 +1,5 @@
+import { User } from './../../../services/interfaces';
+import { AuthService } from 'src/app/services/auth.service';
 import { Query } from 'src/app/services/interfaces';
 import { Component, OnInit, Input } from '@angular/core';
 import { QueryService } from 'src/app/services/query.service';
@@ -9,13 +11,16 @@ import { QueryService } from 'src/app/services/query.service';
 })
 export class QuestionComponent implements OnInit {
   @Input() query: Query;
+  user: User;
   showAnswers = false;
   answer: string;
   constructor(
-    private queryService: QueryService
+    private queryService: QueryService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.user = this.authService.user;
   }
 
   addAnswer() {

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
@@ -11,41 +12,54 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  user: User;
+  user: User = JSON.parse(localStorage.getItem('user'));
   isAuth = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private route: Router
+  ) {
+  }
 
   login(cred: AuthCred) {
     return this.http.post<{ token: string, user: User }>(environment.server + '/auth/login', cred)
       .pipe(tap(res => {
-        this.user = res.user;
         localStorage.setItem('token', res.token);
+        localStorage.setItem('user', JSON.stringify(res.user));
+        this.isAuth.next(true);
+        this.user = res.user;
       }));
   }
 
   register(cred: AuthCred) {
     return this.http.post<{ token: string, user: User }>(environment.server + '/auth/email-register', cred)
       .pipe(tap(res => {
-        this.user = res.user;
         localStorage.setItem('token', res.token);
+        this.isAuth.next(true);
       }));
   }
 
   registerDetails(cred: Details) {
-    console.log('hii');
-    return this.http.post<{ message: string }>(environment.server + '/auth/register', cred);
+    return this.http.post<{ message: string, user: User }>(environment.server + '/auth/register', cred)
+      .pipe(tap(res => {
+        localStorage.setItem('user', JSON.stringify(res.user));
+        this.user = res.user;
+      }));
   }
 
 
-  checkOtp(otp) {
-    console.log(otp);
+  checkOtp(otp: string) {
     return this.http.post(environment.server + '/auth/otp-verification', { otp });
   }
 
   resendOtp() {
     return this.http.get(environment.server + '/auth/resend');
+  }
+
+  logout() {
+    localStorage.clear();
+    this.isAuth.next(false);
+    this.user = null;
+    this.route.navigate(['auth']);
   }
 }

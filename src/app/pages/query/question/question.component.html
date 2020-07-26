@@ -6,13 +6,13 @@
     />
     <mat-card-title>{{ query.name }} </mat-card-title>
     <mat-card-subtitle>{{ query.company }}</mat-card-subtitle>
-    <!-- Mentor Actions -->
-    <!-- <button mat-icon-button class="top_right">
-  <mat-icon>favorite</mat-icon>
-</button> -->
 
-    <!-- Startup actions -->
-    <button mat-icon-button class="top_right" [mat-menu-trigger-for]="menu">
+    <button
+      mat-icon-button
+      class="top_right"
+      *ngIf="user.role === 'Start-up'"
+      [mat-menu-trigger-for]="menu"
+    >
       <mat-icon>more_vert </mat-icon>
     </button>
   </mat-card-header>

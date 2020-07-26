@@ -44,11 +44,14 @@
         <span>{{ datum.name | uppercase }}</span>
       </mat-list-item>
     </a>
-    <a routerLink="/auth">
-      <mat-list-item matRipple matRippleColor="#ffffff1f" class="logout">
-        <mat-icon>login</mat-icon>
-        <span>LOGOUT</span>
-      </mat-list-item>
-    </a>
+    <mat-list-item
+      matRipple
+      matRippleColor="#ffffff1f"
+      class="logout"
+      (click)="logout()"
+    >
+      <mat-icon>login</mat-icon>
+      <span>LOGOUT</span>
+    </mat-list-item>
   </div>
 </mat-list>

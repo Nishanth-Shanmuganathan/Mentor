@@ -25,7 +25,6 @@ export class UIService {
       this.currentView = incomingViewChange;
       return this.mobileView.next(window.innerWidth < 700);
     }
-    console.log('Same');
   }
   getNavigation(): SideNav[] {
     if (true) {

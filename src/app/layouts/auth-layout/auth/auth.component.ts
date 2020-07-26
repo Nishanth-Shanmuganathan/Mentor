@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.mobileViewSubscription = this.uiService.mobileView.subscribe(isMobile => {
       this.isMobile = isMobile;
     });

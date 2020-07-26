@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { UIService } from 'src/app/services/ui.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -14,7 +15,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
   isMobile: boolean;
   mobileViewSubscription: Subscription;
   constructor(
-    private uiService: UIService
+    private uiService: UIService,
+    private authService: AuthService
   ) {
 
   }
@@ -33,4 +35,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     }
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }

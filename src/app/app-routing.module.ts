@@ -19,9 +19,9 @@ const routes: Routes = [
       { path: 'connections', component: ConnectionComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'groups', component: GroupsComponent }
-
     ]
-  }
+  },
+  { path: '**', redirectTo: 'auth' }
 ];
 
 @NgModule({
