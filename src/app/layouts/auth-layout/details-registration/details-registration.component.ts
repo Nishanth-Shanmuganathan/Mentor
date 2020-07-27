@@ -24,7 +24,7 @@ export class DetailsRegistrationComponent implements OnInit {
   @ViewChild('firstForm') firstForm: NgForm;
   ctc: number;
   label: string;
-  options: string[] = ['One', 'Two', 'Three'];
+  countries: string[] = [];
 
 
   constructor(
@@ -58,10 +58,28 @@ export class DetailsRegistrationComponent implements OnInit {
       domain: ['', Validators.required],
       employees: [1, Validators.required]
     });
+
+    // this.authService.countriesList().then(res => {
+    //   // this.countries = res.data;
+    //   console.log(res);
+    // });
   }
 
   formatLabel(value: number) {
     return value + 'L';
+  }
+
+  fetchPlaces(value) {
+    if (!value) { return; }
+    this.authService.countriesList(value).then(res => {
+      this.countries = res;
+    });
+  }
+
+  selectCountry(value) {
+    const data = value.split(',').reverse() || value;
+    this.firstFormGroup.controls.country.setValue(data[0].trim());
+
   }
 
   sendDetails() {
@@ -69,6 +87,13 @@ export class DetailsRegistrationComponent implements OnInit {
       this.firstFormGroup.markAllAsTouched();
       return;
     }
+    const validCity = this.countries.findIndex(ele => ele.toLowerCase().includes(this.firstFormGroup.value.city.toString().toLowerCase()));
+    if (validCity < 0) {
+      this.firstFormGroup.controls.city.setErrors({ invalid: true });
+      return;
+    }
+
+
     if (this.firstFormGroup.value.role === 'Mentor' && this.mentorForm.invalid) { return; }
     if (this.firstFormGroup.value.role === 'Start-up' && this.startupForm.invalid) { return; }
 
@@ -107,7 +132,6 @@ export class DetailsRegistrationComponent implements OnInit {
         }
       };
     }
-
     this.authService.registerDetails(details).subscribe(res => {
       this.uiService.errorMessage(res.message);
       this.route.navigate(['']);

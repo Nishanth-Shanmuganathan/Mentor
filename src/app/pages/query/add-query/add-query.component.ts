@@ -25,7 +25,7 @@ export class AddQueryComponent implements OnInit {
 
   ngOnInit(): void {
     this.queryForm = this.formBuilder.group({
-      query: ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', Validators.required],
+      query: ['Marshall has forged a reputation, and now makes enough money to run a small team of reporters who have made an impact by sniffing out political scandal and conspiracy. \'I think in many cases the reporting we do is more honest, more straight than a lot of things you see even on the front pages of great papers like the New York Times and the Washington Post, \' he said in an interview last year. \'But I think both kinds of journalism should exist, should co- exist.', Validators.required],
       domain: ['Mechanical Engineering', Validators.required]
     });
   }

@@ -7,8 +7,14 @@
     </div>
   </div>
 </div>
-
-<div class="container-fluid">
+<div
+  *ngIf="!queries.length"
+  class="img d-flex justify-content-center align-items-center flex-column"
+>
+  <img src="../../../assets/empty.jpg" />
+  <p class="text-light">No queries found</p>
+</div>
+<div class="container-fluid" *ngIf="queries.length">
   <div class="row align-items-center justify-content-center">
     <div class="col-12">
       <app-question

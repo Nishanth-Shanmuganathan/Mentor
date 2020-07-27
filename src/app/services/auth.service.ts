@@ -1,12 +1,12 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 
 import { environment } from './../../environments/environment';
 import { AuthCred, Details, User } from './interfaces';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -61,5 +61,18 @@ export class AuthService {
     this.isAuth.next(false);
     this.user = null;
     this.route.navigate(['auth']);
+  }
+
+  async countriesList(value) {
+    return this.http.get<{ data: object[] }>(environment.server + '/auth/countries-list/' + value)
+      .pipe(map(res => {
+        const data = [];
+        res.data.forEach(ele => {
+          // tslint:disable-next-line: no-string-literal
+          data.push(ele['place_name']);
+        });
+        return data;
+      }))
+      .toPromise();
   }
 }

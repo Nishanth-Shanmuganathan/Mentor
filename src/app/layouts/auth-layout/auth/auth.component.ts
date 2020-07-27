@@ -69,12 +69,12 @@ export class AuthComponent implements OnInit {
     };
 
     this.authService.login(loginCred).subscribe(res => {
-      console.log(res);
       form.reset();
       this.uiService.errorMessage('Login successful');
       this.route.navigate(['/']);
     }, err => {
       form.reset();
+      console.log(err);
       this.uiService.errorMessage(err.error.message);
     });
   }
@@ -88,13 +88,10 @@ export class AuthComponent implements OnInit {
       password: form.value.password,
       confirmPassword: form.value.confirmPassword,
     };
-
     this.authService.register(regCred).subscribe(res => {
-      console.log(res);
       this.uiService.otpDialog();
     }, err => {
       this.uiService.errorMessage(err.error.message);
-      console.log(err.error.message);
     });
   }
 
