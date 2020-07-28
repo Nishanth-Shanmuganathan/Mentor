@@ -1,3 +1,4 @@
+import { UtilsModule } from './../../utils/utils.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,9 +26,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule
+
+    UtilsModule
   ]
 })
 export class AuthLayoutModule { }

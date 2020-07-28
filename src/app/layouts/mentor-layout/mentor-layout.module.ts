@@ -1,21 +1,18 @@
+import { QueryModule } from './../../pages/query/query.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { UtilsModule } from './../../utils/utils.module';
-import { MaterialModule } from './../../material.module';
 
 import { MentorLayoutComponent } from './mentor-layout.component';
-import { AnswerComponent } from 'src/app/pages/query/answer/answer.component';
-import { QuestionComponent } from 'src/app/pages/query/question/question.component';
-import { AddQueryComponent } from 'src/app/pages/query/add-query/add-query.component';
 
 import { QueryComponent } from 'src/app/pages/query/query.component';
 
 import { MessagingComponent } from 'src/app/pages/messaging/messaging.component';
 
 import { ConnectionComponent } from 'src/app/pages/connection/connection.component';
+import { ProfileCardsComponent } from './../../pages/connection/profile-cards/profile-cards.component';
 
 import { GroupsComponent } from 'src/app/pages/groups/groups.component';
 
@@ -40,23 +37,19 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     MentorLayoutComponent,
-    QueryComponent,
     MessagingComponent,
     ConnectionComponent,
     GroupsComponent,
     ProjectsComponent,
-    AnswerComponent,
-    QuestionComponent,
-    AddQueryComponent,
+    ProfileCardsComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes,),
-    FormsModule,
-    ReactiveFormsModule,
+    RouterModule.forChild(routes),
 
-    MaterialModule,
-    UtilsModule
+    UtilsModule,
+
+    QueryModule
   ]
 })
 export class MentorLayoutModule { }

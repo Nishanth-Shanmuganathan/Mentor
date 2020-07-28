@@ -1,1 +1,50 @@
-<p>connection works!</p>
+<div class="container-fluid">
+  <div class="row justify-content-around">
+    <div class="col-*">
+      <mat-form-field class="connection" color="accent">
+        <mat-label>Username</mat-label>
+        <input
+          type="text"
+          placeholder="Username"
+          matInput
+          [(ngModel)]="username"
+          (ngModelChange)="filterResults()"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col-*">
+      <mat-form-field class="connection" color="accent">
+        <mat-label>Location</mat-label>
+        <input
+          type="text"
+          placeholder="City"
+          matInput
+          [matAutocomplete]="city"
+          (input)="fetchPlaces(cityInput.value)"
+          [(ngModel)]="location"
+          #cityInput
+          (keyup.backspace)="filterResults()"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-autocomplete #city="matAutocomplete">
+          <mat-option
+            *ngFor="let option of countries"
+            [value]="option"
+            (click)="filterResults()"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+        <!-- <mat-error *ngIf="firstFormGroup.controls.city.errors?.invalid"
+                  >Please select a valid city</mat-error
+                > -->
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-stretch">
+    <div class="col-*" *ngFor="let connection of filteredConnections">
+      <app-profile-cards [connection]="connection"></app-profile-cards>
+    </div>
+  </div>
+</div>
