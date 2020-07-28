@@ -1,7 +1,7 @@
-import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-otp',
@@ -65,4 +65,4 @@ export class OtpComponent implements OnInit {
       this.clear = true;
     });
   }
-};
+}
