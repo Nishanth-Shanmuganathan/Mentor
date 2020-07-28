@@ -1,13 +1,13 @@
-import { MaterialModule } from './../material.module';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { MaterialModule } from './../material.module';
+
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { ErrorComponent } from './error/error.component';
-
-
 
 @NgModule({
   declarations: [
@@ -20,7 +20,6 @@ import { ErrorComponent } from './error/error.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-
     MaterialModule
   ],
   exports: [
