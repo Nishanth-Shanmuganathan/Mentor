@@ -1,3 +1,4 @@
+import { UIService } from 'src/app/services/ui.service';
 import { User } from './interfaces';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
@@ -16,7 +17,8 @@ export class ConnectionService {
 
   constructor(
     private http: HttpClient,
-    private route: Router
+    private route: Router,
+    private uiService: UIService
   ) { }
 
 
@@ -28,5 +30,18 @@ export class ConnectionService {
     }, err => {
       console.log(err);
     });
+  }
+
+  sendConnectionRequest(id: string) {
+    this.http.post<{ message: string, id: string }>(environment.server + '/conn/' + id, {})
+      .subscribe(res => {
+        const receiverIndex = this.connections.findIndex(connection => connection._id === id);
+        this.connections.splice(receiverIndex, 1);
+        this.uiService.errorMessage(res.message);
+        this.connectionSubscription.next(this.connections);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
   }
 }

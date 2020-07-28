@@ -55,6 +55,7 @@ export interface Details {
 }
 
 export interface User {
+  _id: string;
   username: string;
   mobile: string;
   email: string;

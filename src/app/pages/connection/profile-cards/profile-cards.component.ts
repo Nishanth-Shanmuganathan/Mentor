@@ -1,3 +1,4 @@
+import { ConnectionService } from './../../../services/connection.service';
 import { User } from './../../../services/interfaces';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -9,9 +10,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProfileCardsComponent implements OnInit {
 
   @Input() connection: User;
-  constructor() { }
+  constructor(
+    private connectionService: ConnectionService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  sendReq(id: string) {
+    this.connectionService.sendConnectionRequest(id);
   }
 
 }
