@@ -1,13 +1,14 @@
-import { AuthLayoutComponent } from './auth-layout.component';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from './../../material.module';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { DetailsRegistrationComponent } from './details-registration/details-registration.component';
-import { AuthComponent } from './auth/auth.component';
+import { MaterialModule } from './../../material.module';
+
 import { OtpComponent } from './otp/otp.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthLayoutComponent } from './auth-layout.component';
+import { DetailsRegistrationComponent } from './details-registration/details-registration.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: AuthComponent },

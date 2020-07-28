@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/mentor'
+    redirectTo: 'mentor'
   },
   {
     path: 'auth',

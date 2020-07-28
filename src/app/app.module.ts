@@ -1,18 +1,16 @@
-import { MentorLayoutModule } from './layouts/mentor-layout/mentor-layout.module';
-import { AuthGuard } from './services/auth.gaurd';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { MaterialModule } from './material.module';
+import { AuthGuard } from './services/auth.gaurd';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './services/auth.interceptor';
 
 import { AppComponent } from './app.component';
 import { AuthLayoutModule } from './layouts/auth-layout/auth-layout.module';
+import { MentorLayoutModule } from './layouts/mentor-layout/mentor-layout.module';
 
 @NgModule({
   declarations: [
@@ -20,13 +18,11 @@ import { AuthLayoutModule } from './layouts/auth-layout/auth-layout.module';
   ],
   imports: [
     BrowserModule,
-    RouterModule,
-    FormsModule,
-    MaterialModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+
+    RouterModule,
+    AppRoutingModule,
 
     MentorLayoutModule,
     AuthLayoutModule

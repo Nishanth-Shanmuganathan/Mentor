@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MaterialModule } from './../material.module';
 
@@ -18,8 +17,6 @@ import { ErrorComponent } from './error/error.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
     MaterialModule
   ],
   exports: [

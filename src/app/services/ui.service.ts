@@ -29,7 +29,7 @@ export class UIService {
   getNavigation(): SideNav[] {
     if (true) {
       return [
-        { name: 'Queries', icon: 'contact_support', link: '' },
+        { name: 'Queries', icon: 'contact_support', link: 'queries' },
         { name: 'Messaging', icon: 'message', link: 'messaging' },
         { name: 'Connections', icon: 'group', link: 'connections' },
         { name: 'Projects', icon: 'construction', link: 'projects' },
