@@ -7,10 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NetworkNotificationsComponent implements OnInit {
 
-  @Input() notification
-  constructor() { }
+  @Input() notification;
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+
   }
 
 }

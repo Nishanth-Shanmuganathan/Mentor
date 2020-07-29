@@ -24,9 +24,8 @@ export class NotificationService {
   getNotifications() {
     if (this.authService.user) {
       this.notifications = this.authService.user.notifications;
-      console.log(this.notifications);
     } else {
-      console.log('User illa');
+      this.authService.getUser();
     }
     return this.notifications;
   }

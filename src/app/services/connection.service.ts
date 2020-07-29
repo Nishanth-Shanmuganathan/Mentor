@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { UIService } from 'src/app/services/ui.service';
 import { User } from './interfaces';
 import { Subject } from 'rxjs';
@@ -18,7 +19,8 @@ export class ConnectionService {
   constructor(
     private http: HttpClient,
     private route: Router,
-    private uiService: UIService
+    private uiService: UIService,
+    private authService: AuthService
   ) { }
 
 
@@ -33,8 +35,10 @@ export class ConnectionService {
   }
 
   sendConnectionRequest(id: string) {
-    this.http.post<{ message: string, id: string }>(environment.server + '/conn/' + id, {})
+    this.http.post<{ message: string, user: User }>(environment.server + '/conn/' + id, {})
       .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
         const receiverIndex = this.connections.findIndex(connection => connection._id === id);
         this.connections.splice(receiverIndex, 1);
         this.uiService.errorMessage(res.message);

@@ -36,6 +36,12 @@ export class SideNavComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout()
+      .subscribe(res => {
+        this.uiService.errorMessage(res.message);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
   }
 }

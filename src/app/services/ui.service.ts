@@ -48,12 +48,13 @@ export class UIService {
   }
 
   errorMessage(val: string) {
+    this.closeModals();
     this.dialog.open(ErrorComponent,
       {
         width: 'fit-content',
         minWidth: '250px',
         height: 'fit-content',
-        hasBackdrop: false,
+        hasBackdrop: true,
         position: { top: '10px', right: '10px' },
         disableClose: true,
         data: val
@@ -61,6 +62,7 @@ export class UIService {
   }
 
   otpDialog() {
+    this.closeModals();
     this.dialog.open(OtpComponent, { disableClose: true });
   }
 

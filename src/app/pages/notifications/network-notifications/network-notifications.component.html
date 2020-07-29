@@ -1,16 +1,19 @@
 <mat-card
-  class="col-12 row d-flex justify-content-between flex-nowrap align-items-center border-bottom"
+  class="col-12 row d-flex flex-column flex-sm-row justify-content-between flex-wrap flex-sm-nowrap align-items-sm-center border-bottom"
 >
-  <div class="col-*">
-    <span *ngIf="notification.action === 'sent'"
-      >You sent {{ notification.doerName }}</span
-    >
-    <span *ngIf="notification.action === 'received'"
-      >You received {{ notification.doerName }}</span
-    >
+  <div class="col-* d-flex flex-row align-items-center">
+    <img
+      matCardAvatar
+      class="m-2"
+      src="../../../assets/jlpt.jpg"
+      alt="profile"
+      width="150px"
+      height="150px"
+    />
+    <b>{{ notification.doerName }}</b>
   </div>
   <div
-    class="col-* ml-3 d-flex flex-column flex-md-row justify-content-stretch"
+    class="col-* m-auto m-sm-0 justify-content-end ml-3 d-flex flex-row flex-wrap"
   >
     <button
       class="m-md-2 mt-1 mb-1"

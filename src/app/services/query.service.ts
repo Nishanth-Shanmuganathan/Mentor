@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Answer } from './interfaces';
 import { tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -17,7 +18,8 @@ export class QueryService {
 
   constructor(
     private http: HttpClient,
-    private uiService: UIService
+    private uiService: UIService,
+    private authService: AuthService
   ) { }
 
 
@@ -63,7 +65,6 @@ export class QueryService {
   }
 
   deleteAnswers(commentId: string, queryId: string) {
-    console.log(this.queries.findIndex(query => query._id === queryId));
     this.http.delete<{ message: string }>(environment.server + '/queries/' + queryId + '/' + commentId)
       .subscribe(res => {
         this.uiService.errorMessage(res.message);

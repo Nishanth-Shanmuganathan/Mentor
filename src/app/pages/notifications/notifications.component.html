@@ -6,43 +6,152 @@
           <mat-tab label="ACTIVITIES">
             <ng-template matTabContent>
               <div class="col-12 col-lg-10 offset-lg-1">
-                <mat-list>
-                  <mat-list-item
-                    class="border-bottom"
-                    *ngFor="let notification of notifications"
-                  >
-                    <span *ngIf="notification.action === 'sent'">
-                      You have sent a connection request to
-                      <b>{{ notification.doerName }}</b
-                      >.
-                    </span>
-                    <span *ngIf="notification.action === 'received'">
-                      <b>{{ notification.doerName }}</b> sent a connection
-                      request to you.
-                    </span>
+                <ul>
+                  <li *ngFor="let notification of notifications">
+                    <mat-card
+                      class="border-bottom row d-flex align-items-center flex-nowrap"
+                    >
+                      <img
+                        class="col-*"
+                        matCardAvatar
+                        class="m-2"
+                        src="http://localhost:3000/public/images/nish.jpg"
+                        alt="profile"
+                        width="150px"
+                        height="150px"
+                      />
+                      <span
+                        class="col-*"
+                        *ngIf="notification.action === 'sent'"
+                      >
+                        You have sent a connection request to
+                        <b>{{ notification.doerName }}</b
+                        >.
+                      </span>
+                      <span
+                        class="col-*"
+                        *ngIf="notification.action === 'received'"
+                      >
+                        <b>{{ notification.doerName }}</b> sent a connection
+                        request to you.
+                      </span>
 
-                    <span *ngIf="notification.action === 'answered'">
-                      <b>{{ notification.doerName }}</b> answered your query.
-                    </span>
+                      <span
+                        class="col-*"
+                        *ngIf="notification.action === 'answered'"
+                      >
+                        <b>{{ notification.doerName }}</b> answered your query.
+                      </span>
 
-                    <span *ngIf="notification.action === 'posted'">
-                      <b>{{ notification.doerName }}</b> posted a new query.
-                    </span>
-                  </mat-list-item>
-                </mat-list>
+                      <span
+                        class="col-*"
+                        *ngIf="notification.action === 'posted'"
+                      >
+                        <b>{{ notification.doerName }}</b> posted a new query.
+                      </span>
+                    </mat-card>
+                  </li>
+                </ul>
               </div>
             </ng-template>
           </mat-tab>
           <mat-tab label="NETWORK">
             <ng-template matTabContent>
-              <div class="col-12 col-lg-10 offset-lg-1">
+              <mat-card
+                *ngIf="!isMobile"
+                class="offset-1 col-10 row justify-content-center"
+              >
+                <mat-tab-group mat-stretch-tabs>
+                  <mat-tab label="SENT">
+                    <div *ngFor="let notification of notifications">
+                      <mat-card
+                        *ngIf="notification.action === 'sent'"
+                        class="col-auto row d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center border-bottom"
+                      >
+                        <div class="col-* d-flex flex-row align-items-center">
+                          <img
+                            matCardAvatar
+                            class="m-2"
+                            src="../../../assets/jlpt.jpg"
+                            alt="profile"
+                            width="150px"
+                            height="150px"
+                          />
+                          <b>{{ notification.doerName }}</b>
+                        </div>
+                        <div
+                          class="col-* m-auto m-sm-0 justify-content-end ml-3 d-flex flex-row flex-wrap"
+                        >
+                          <button
+                            class="m-md-2 mt-1 mb-1"
+                            mat-raised-button
+                            color="primary"
+                            *ngIf="notification.action === 'sent'"
+                          >
+                            WITHDRAW
+                          </button>
+                        </div>
+                      </mat-card>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="RECEIVED">
+                    <div *ngFor="let notification of notifications">
+                      <mat-card
+                        *ngIf="notification.action === 'received'"
+                        class="col-12 row d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center border-bottom"
+                      >
+                        <div class="col-* d-flex flex-row align-items-center">
+                          <img
+                            matCardAvatar
+                            class="m-2"
+                            src="../../../assets/jlpt.jpg"
+                            alt="profile"
+                            width="150px"
+                            height="150px"
+                          />
+                          <span>{{ notification.doerName }}</span>
+                        </div>
+                        <div
+                          class="col-* m-auto m-sm-0 justify-content-end ml-3 d-flex flex-row flex-wrap"
+                        >
+                          <button
+                            class="m-md-2 mt-1 mb-1"
+                            mat-raised-button
+                            color="primary"
+                            *ngIf="notification.action === 'received'"
+                          >
+                            ACCEPT
+                          </button>
+
+                          <button
+                            class="m-md-2 mt-1 mb-1"
+                            mat-raised-button
+                            *ngIf="notification.action === 'received'"
+                          >
+                            REJECT
+                          </button>
+                        </div>
+                      </mat-card>
+                    </div>
+                  </mat-tab>
+                </mat-tab-group>
+              </mat-card>
+              <div *ngIf="isMobile" class="col-12 col-lg-10 offset-lg-1">
                 <ul>
+                  <p class="divider text-muted border-bottom">
+                    RECEIVED REQUESTS
+                  </p>
                   <li *ngFor="let notification of notifications">
                     <app-network-notifications
-                      *ngIf="
-                        notification.action === 'sent' ||
-                        notification.action === 'received'
-                      "
+                      *ngIf="notification.action === 'received'"
+                      [notification]="notification"
+                    ></app-network-notifications>
+                  </li>
+                  <p class="divider text-muted border-bottom">SENT REQUESTS</p>
+
+                  <li *ngFor="let notification of notifications">
+                    <app-network-notifications
+                      *ngIf="notification.action === 'sent'"
                       [notification]="notification"
                     ></app-network-notifications>
                   </li>

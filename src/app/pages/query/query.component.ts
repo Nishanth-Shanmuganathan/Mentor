@@ -24,7 +24,15 @@ export class QueryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.user = this.authService.user;
+    console.log(this.user);
+    this.authService.userSubscription.subscribe(res => {
+      this.user = res;
+      console.log(this.user);
+    });
+
+
     this.queryService.fetchQueries();
     this.queryService.querySubject.subscribe(res => {
       this.queries = res;

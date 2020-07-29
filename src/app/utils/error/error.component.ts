@@ -15,7 +15,7 @@ export class ErrorComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.closeError();
-    }, 5000);
+    }, 1500);
   }
 
   closeError() {

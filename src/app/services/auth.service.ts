@@ -1,33 +1,44 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
-
-import { environment } from './../../environments/environment';
 import { AuthCred, Details, User } from './interfaces';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user: User = JSON.parse(localStorage.getItem('user'));
+  user: User;
+  userSubscription = new BehaviorSubject<User>(this.user);
   isAuth = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   constructor(
     private http: HttpClient,
-    private route: Router
+    private route: Router,
   ) {
+  }
+
+  getUser() {
+    this.http.get<{ user: User }>(environment.server + '/auth/user')
+      .subscribe(res => {
+        this.user = res.user;
+        this.userSubscription.next(this.user);
+      }, err => {
+        this.logout();
+      });
   }
 
   login(cred: AuthCred) {
     return this.http.post<{ token: string, user: User }>(environment.server + '/auth/login', cred)
       .pipe(tap(res => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('user', JSON.stringify(res.user));
         this.isAuth.next(true);
         this.user = res.user;
+        this.userSubscription.next(this.user);
       }));
   }
 
@@ -42,8 +53,8 @@ export class AuthService {
   registerDetails(cred: Details) {
     return this.http.post<{ message: string, user: User }>(environment.server + '/auth/register', cred)
       .pipe(tap(res => {
-        localStorage.setItem('user', JSON.stringify(res.user));
         this.user = res.user;
+        this.userSubscription.next(this.user);
       }));
   }
 
@@ -57,10 +68,15 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
-    this.isAuth.next(false);
-    this.user = null;
-    this.route.navigate(['auth']);
+    return this.http.get<{ message: string }>(environment.server + '/auth/logout')
+      .pipe(tap(res => {
+        localStorage.clear();
+        this.isAuth.next(false);
+        this.user = null;
+        this.userSubscription.next(this.user);
+        this.route.navigate(['auth']);
+      }));
+
   }
 
   async countriesList(value) {

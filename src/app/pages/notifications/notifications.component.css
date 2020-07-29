@@ -11,3 +11,8 @@ ul {
 ul li mat-card {
   box-shadow: none !important;
 }
+
+.divider {
+  padding: 20px;
+  font-size: large;
+}
