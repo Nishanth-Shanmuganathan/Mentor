@@ -10,6 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProfileCardsComponent implements OnInit {
 
   @Input() connection: User;
+  @Input() self = false;
   constructor(
     private connectionService: ConnectionService
   ) { }
@@ -19,6 +20,10 @@ export class ProfileCardsComponent implements OnInit {
 
   sendReq(id: string) {
     this.connectionService.sendConnectionRequest(id);
+  }
+
+  remove(id: string) {
+    this.connectionService.remove(id);
   }
 
 }

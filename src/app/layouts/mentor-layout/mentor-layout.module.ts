@@ -1,3 +1,4 @@
+import { MyConnectionComponent } from './../../pages/connection/my-connection/my-connection.component';
 import { NetworkNotificationsComponent } from './../../pages/notifications/network-notifications/network-notifications.component';
 import { NotificationsComponent } from './../../pages/notifications/notifications.component';
 import { QueryModule } from './../../pages/query/query.module';
@@ -31,7 +32,8 @@ const routes: Routes = [
     component: QueryComponent,
   },
   { path: 'messaging', component: MessagingComponent },
-  { path: 'connections', component: ConnectionComponent },
+  { path: 'connections', component: ConnectionComponent, },
+  { path: 'my-connections', component: MyConnectionComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'groups', component: GroupsComponent },
   { path: 'notifications', component: NotificationsComponent }
@@ -46,7 +48,8 @@ const routes: Routes = [
     ProjectsComponent,
     ProfileCardsComponent,
     NotificationsComponent,
-    NetworkNotificationsComponent
+    NetworkNotificationsComponent,
+    MyConnectionComponent
   ],
   imports: [
     CommonModule,

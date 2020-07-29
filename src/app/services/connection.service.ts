@@ -84,4 +84,16 @@ export class ConnectionService {
         this.uiService.errorMessage(err.error.message);
       });
   }
+
+  remove(id) {
+    this.http.get<{ message: string, user: User }>(environment.server + '/conn/remove/' + id)
+      .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
+        this.uiService.errorMessage(res.message);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
+  }
 }

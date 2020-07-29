@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row mt-4 mb-auto flex-row justify-content-center">
+    <app-profile-cards
+      class="col-*"
+      *ngFor="let connection of connections"
+      [connection]="connection"
+      [self]="true"
+    >
+    </app-profile-cards>
+  </div>
+</div>

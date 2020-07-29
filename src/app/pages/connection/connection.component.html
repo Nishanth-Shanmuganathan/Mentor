@@ -1,4 +1,14 @@
 <div class="container-fluid">
+  <div class="row mt-3 mb-3">
+    <div class="offset-1 col-">
+      <button
+        mat-raised-button
+        [routerLink]="['/', 'mentor', 'my-connections']"
+      >
+        MY CONNECTIONS
+      </button>
+    </div>
+  </div>
   <div class="row justify-content-around">
     <div class="col-*">
       <mat-form-field class="connection" color="accent">
@@ -36,9 +46,6 @@
             {{ option }}
           </mat-option>
         </mat-autocomplete>
-        <!-- <mat-error *ngIf="firstFormGroup.controls.city.errors?.invalid"
-                  >Please select a valid city</mat-error
-                > -->
       </mat-form-field>
     </div>
   </div>

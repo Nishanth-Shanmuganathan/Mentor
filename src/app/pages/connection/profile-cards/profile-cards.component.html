@@ -14,7 +14,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <div class="d-flex justify-content-around align-items-end">
+    <div *ngIf="!self" class="d-flex justify-content-around align-items-end">
       <button
         mat-raised-button
         color="primary"
@@ -24,6 +24,14 @@
       </button>
       <button mat-raised-button color="accent">
         VIEW PROFILE
+      </button>
+    </div>
+    <div *ngIf="self" class="d-flex justify-content-around align-items-end">
+      <button mat-raised-button color="primary">
+        VIEW PROFILE
+      </button>
+      <button mat-raised-button color="accent" (click)="remove(connection._id)">
+        REMOVE
       </button>
     </div>
   </mat-card-actions>
