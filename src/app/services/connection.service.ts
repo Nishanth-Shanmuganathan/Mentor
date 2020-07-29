@@ -34,7 +34,7 @@ export class ConnectionService {
     });
   }
 
-  sendConnectionRequest(id: string) {
+  sendConnectionRequest(id) {
     this.http.post<{ message: string, user: User }>(environment.server + '/conn/' + id, {})
       .subscribe(res => {
         this.authService.user = res.user;
@@ -43,6 +43,42 @@ export class ConnectionService {
         this.connections.splice(receiverIndex, 1);
         this.uiService.errorMessage(res.message);
         this.connectionSubscription.next(this.connections);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
+  }
+
+  withdraw(id) {
+    this.http.get<{ message: string, user: User }>(environment.server + '/conn/withdraw/' + id)
+      .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
+        this.uiService.errorMessage(res.message);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
+  }
+
+  accept(id) {
+    this.http.get<{ message: string, user: User }>(environment.server + '/conn/accept/' + id)
+      .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
+        this.uiService.errorMessage(res.message);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
+  }
+
+  reject(id) {
+    this.http.get<{ message: string, user: User }>(environment.server + '/conn/reject/' + id)
+      .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
+        this.uiService.errorMessage(res.message);
       }, err => {
         console.log(err);
         this.uiService.errorMessage(err.error.message);

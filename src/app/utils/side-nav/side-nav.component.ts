@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { UIService } from 'src/app/services/ui.service';
@@ -16,7 +17,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
   mobileViewSubscription: Subscription;
   constructor(
     private uiService: UIService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: Router
   ) {
 
   }
@@ -41,7 +43,11 @@ export class SideNavComponent implements OnInit, OnDestroy {
         this.uiService.errorMessage(res.message);
       }, err => {
         console.log(err);
-        this.uiService.errorMessage(err.error.message);
+        localStorage.clear();
+        this.authService.isAuth.next(false);
+        this.authService.user = null;
+        this.authService.userSubscription.next(this.authService.user);
+        this.route.navigate(['auth']);
       });
   }
 }

@@ -20,6 +20,7 @@
       mat-raised-button
       color="primary"
       *ngIf="notification.action === 'received'"
+      (click)="acceptance(notification.doerId)"
     >
       ACCEPT
     </button>
@@ -28,6 +29,7 @@
       mat-raised-button
       color="primary"
       *ngIf="notification.action === 'sent'"
+      (click)="withdrawal(notification.doerId)"
     >
       WITHDRAW
     </button>
@@ -36,6 +38,7 @@
       class="m-md-2 mt-1 mb-1"
       mat-raised-button
       *ngIf="notification.action === 'received'"
+      (click)="rejection(notification.doerId)"
     >
       REJECT
     </button>

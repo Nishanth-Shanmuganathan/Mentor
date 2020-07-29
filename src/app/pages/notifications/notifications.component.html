@@ -5,8 +5,15 @@
         <mat-tab-group animationDuration="800ms" mat-stretch-tabs>
           <mat-tab label="ACTIVITIES">
             <ng-template matTabContent>
-              <div class="col-12 col-lg-10 offset-lg-1">
+              <div class="col-12 col-sm-*">
                 <ul>
+                  <li *ngIf="!notifications?.length">
+                    <mat-card
+                      class="border-bottom row align-items-center justify-content-center"
+                    >
+                      <span class="col-* m-auto">No activities found</span>
+                    </mat-card>
+                  </li>
                   <li *ngFor="let notification of notifications">
                     <mat-card
                       class="border-bottom row d-flex align-items-center flex-nowrap"
@@ -49,6 +56,22 @@
                       >
                         <b>{{ notification.doerName }}</b> posted a new query.
                       </span>
+
+                      <span
+                        class="col-*"
+                        *ngIf="notification.action === 'accepted'"
+                      >
+                        <b>{{ notification.doerName }}</b> accepted your
+                        connection request.
+                      </span>
+
+                      <span
+                        class="col-*"
+                        *ngIf="notification.action === 'connected'"
+                      >
+                        <b>{{ notification.doerName }}</b> is now in connection
+                        with you.
+                      </span>
                     </mat-card>
                   </li>
                 </ul>
@@ -87,6 +110,7 @@
                             mat-raised-button
                             color="primary"
                             *ngIf="notification.action === 'sent'"
+                            (click)="withdraw(notification.doerId)"
                           >
                             WITHDRAW
                           </button>
@@ -119,6 +143,7 @@
                             mat-raised-button
                             color="primary"
                             *ngIf="notification.action === 'received'"
+                            (click)="accept(notification.doerId)"
                           >
                             ACCEPT
                           </button>
@@ -127,6 +152,7 @@
                             class="m-md-2 mt-1 mb-1"
                             mat-raised-button
                             *ngIf="notification.action === 'received'"
+                            (click)="reject(notification.doerId)"
                           >
                             REJECT
                           </button>
@@ -145,6 +171,9 @@
                     <app-network-notifications
                       *ngIf="notification.action === 'received'"
                       [notification]="notification"
+                      (accept)="accept($event)"
+                      (reject)="reject($event)"
+                      (withdraw)="withdraw($event)"
                     ></app-network-notifications>
                   </li>
                   <p class="divider text-muted border-bottom">SENT REQUESTS</p>
@@ -152,6 +181,9 @@
                   <li *ngFor="let notification of notifications">
                     <app-network-notifications
                       *ngIf="notification.action === 'sent'"
+                      (accept)="accept($event)"
+                      (reject)="reject($event)"
+                      (withdraw)="withdraw($event)"
                       [notification]="notification"
                     ></app-network-notifications>
                   </li>
