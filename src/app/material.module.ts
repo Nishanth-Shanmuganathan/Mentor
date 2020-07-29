@@ -19,6 +19,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const Modules = [
   MatToolbarModule,
@@ -39,7 +40,8 @@ const Modules = [
   MatAutocompleteModule,
   MatCheckboxModule,
   MatSliderModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatTabsModule
 ];
 
 @NgModule({

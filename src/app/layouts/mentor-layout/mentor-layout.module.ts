@@ -1,3 +1,5 @@
+import { NetworkNotificationsComponent } from './../../pages/notifications/network-notifications/network-notifications.component';
+import { NotificationsComponent } from './../../pages/notifications/notifications.component';
 import { QueryModule } from './../../pages/query/query.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -31,7 +33,8 @@ const routes: Routes = [
   { path: 'messaging', component: MessagingComponent },
   { path: 'connections', component: ConnectionComponent },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'groups', component: GroupsComponent }
+  { path: 'groups', component: GroupsComponent },
+  { path: 'notifications', component: NotificationsComponent }
 ];
 
 @NgModule({
@@ -41,7 +44,9 @@ const routes: Routes = [
     ConnectionComponent,
     GroupsComponent,
     ProjectsComponent,
-    ProfileCardsComponent
+    ProfileCardsComponent,
+    NotificationsComponent,
+    NetworkNotificationsComponent
   ],
   imports: [
     CommonModule,

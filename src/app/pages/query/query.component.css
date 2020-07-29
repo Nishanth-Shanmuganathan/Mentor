@@ -24,20 +24,6 @@ p {
 }
 
 
-.add-query {
-  margin: 0px;
-  padding: 10px;
-  border: 0px;
-  border-radius: 125px;
-  width: fit-content;
-  height: 40px;
-  background-color: white;
-  color: black;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
 
 .img {
   width: 100%;

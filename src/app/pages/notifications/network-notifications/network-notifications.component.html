@@ -1,0 +1,40 @@
+<mat-card
+  class="col-12 row d-flex justify-content-between flex-nowrap align-items-center border-bottom"
+>
+  <div class="col-*">
+    <span *ngIf="notification.action === 'sent'"
+      >You sent {{ notification.doerName }}</span
+    >
+    <span *ngIf="notification.action === 'received'"
+      >You received {{ notification.doerName }}</span
+    >
+  </div>
+  <div
+    class="col-* ml-3 d-flex flex-column flex-md-row justify-content-stretch"
+  >
+    <button
+      class="m-md-2 mt-1 mb-1"
+      mat-raised-button
+      color="primary"
+      *ngIf="notification.action === 'received'"
+    >
+      ACCEPT
+    </button>
+    <button
+      class="m-md-2 mt-1 mb-1"
+      mat-raised-button
+      color="primary"
+      *ngIf="notification.action === 'sent'"
+    >
+      WITHDRAW
+    </button>
+
+    <button
+      class="m-md-2 mt-1 mb-1"
+      mat-raised-button
+      *ngIf="notification.action === 'received'"
+    >
+      REJECT
+    </button>
+  </div>
+</mat-card>

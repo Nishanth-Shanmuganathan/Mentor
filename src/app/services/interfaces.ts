@@ -71,4 +71,9 @@ export interface User {
     experience?: number,
     ctc?: number
   };
+  notifications: {
+    action: string,
+    doerId: string;
+    doerName: string;
+  };
 }

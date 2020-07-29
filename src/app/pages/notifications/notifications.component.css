@@ -1,0 +1,13 @@
+.main {
+  width: 100%;
+  min-height: 80vh;
+}
+
+ul {
+  list-style: none;
+  padding: 0%;
+}
+
+ul li mat-card {
+  box-shadow: none !important;
+}
