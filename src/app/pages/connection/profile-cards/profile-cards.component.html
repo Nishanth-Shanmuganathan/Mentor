@@ -9,7 +9,9 @@
     <div class="title">
       <p>{{ connection.username }}</p>
       <p class="text-muted">
-        {{ connection.roleDetails.position || connection.roleDetails.company }}
+        {{
+          connection.roleDetails?.position || connection.roleDetails?.company
+        }}
       </p>
     </div>
   </mat-card-content>

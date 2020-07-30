@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MyConnectionComponent implements OnInit {
 
-  connections: User[];
+  connections: User[] = [];
   constructor(
     private connectionService: ConnectionService,
     private authService: AuthService

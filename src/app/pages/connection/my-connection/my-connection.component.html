@@ -1,5 +1,28 @@
 <div class="container-fluid">
-  <div class="row mt-4 mb-auto flex-row justify-content-center">
+  <div class="row mt-3">
+    <div class="offset-1 col-*">
+      <button mat-raised-button [routerLink]="'..'">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        <span>BACK TO SEARCH</span>
+      </button>
+    </div>
+  </div>
+  <div
+    *ngIf="!connections.length"
+    class="row error justify-content-center align-items-center flex-column"
+  >
+    <img
+      class="col-*"
+      src="./../../../../assets/nofriends.jpg"
+      width="100px"
+      height="200px"
+    />
+    <p class="col-* text-light">Seems like you have no connections.</p>
+  </div>
+  <div
+    *ngIf="connections.length"
+    class="row mt-4 mb-auto flex-row justify-content-center"
+  >
     <app-profile-cards
       class="col-*"
       *ngFor="let connection of connections"

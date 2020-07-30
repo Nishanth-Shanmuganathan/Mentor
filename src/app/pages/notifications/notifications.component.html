@@ -16,6 +16,12 @@
                   </li>
                   <li *ngFor="let notification of notifications">
                     <mat-card
+                      *ngIf="
+                        notification.action === 'sent' ||
+                        notification.action === 'received' ||
+                        notification.action === 'accepted' ||
+                        notification.action === 'connected'
+                      "
                       class="border-bottom row d-flex align-items-center flex-nowrap"
                     >
                       <img
@@ -41,20 +47,6 @@
                       >
                         <b>{{ notification.doerName }}</b> sent a connection
                         request to you.
-                      </span>
-
-                      <span
-                        class="col-*"
-                        *ngIf="notification.action === 'answered'"
-                      >
-                        <b>{{ notification.doerName }}</b> answered your query.
-                      </span>
-
-                      <span
-                        class="col-*"
-                        *ngIf="notification.action === 'posted'"
-                      >
-                        <b>{{ notification.doerName }}</b> posted a new query.
                       </span>
 
                       <span

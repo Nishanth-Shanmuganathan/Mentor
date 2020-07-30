@@ -76,4 +76,7 @@ export interface User {
     doerId: string;
     doerName: string;
   }];
+  connections: string[];
+  pending: string[];
+  sent: string[];
 }

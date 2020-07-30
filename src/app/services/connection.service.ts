@@ -94,10 +94,12 @@ export class ConnectionService {
   }
 
   remove(id) {
-    this.http.get<{ message: string, user: User }>(environment.server + '/conn/remove/' + id)
+    this.http.get<{ message: string, user: User, userConnections: User[] }>(environment.server + '/conn/remove/' + id)
       .subscribe(res => {
+        console.log(res.user);
         this.authService.user = res.user;
         this.authService.userSubscription.next(res.user);
+        this.connectionSubscription.next(res.userConnections);
         this.uiService.errorMessage(res.message);
       }, err => {
         console.log(err);

@@ -14,12 +14,10 @@ import { QueryComponent } from 'src/app/pages/query/query.component';
 
 import { MessagingComponent } from 'src/app/pages/messaging/messaging.component';
 
-import { ConnectionComponent } from 'src/app/pages/connection/connection.component';
-import { ProfileCardsComponent } from './../../pages/connection/profile-cards/profile-cards.component';
-
 import { GroupsComponent } from 'src/app/pages/groups/groups.component';
 
 import { ProjectsComponent } from 'src/app/pages/projects/projects.component';
+import { ConnectionComponent } from 'src/app/pages/connection/connection.component';
 
 const routes: Routes = [
   {
@@ -31,9 +29,12 @@ const routes: Routes = [
     path: 'queries',
     component: QueryComponent,
   },
+  {
+    path: 'connections',
+    component: ConnectionComponent,
+    loadChildren: () => import('./../../pages/connection/connection.module').then(mod => mod.ConnectionModule)
+  },
   { path: 'messaging', component: MessagingComponent },
-  { path: 'connections', component: ConnectionComponent, },
-  { path: 'my-connections', component: MyConnectionComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'groups', component: GroupsComponent },
   { path: 'notifications', component: NotificationsComponent }
@@ -43,13 +44,10 @@ const routes: Routes = [
   declarations: [
     MentorLayoutComponent,
     MessagingComponent,
-    ConnectionComponent,
     GroupsComponent,
     ProjectsComponent,
-    ProfileCardsComponent,
     NotificationsComponent,
     NetworkNotificationsComponent,
-    MyConnectionComponent
   ],
   imports: [
     CommonModule,

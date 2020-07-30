@@ -29,10 +29,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./layouts/mentor-layout/mentor-layout.module').then(mod => mod.MentorLayoutModule)
   },
-  {
-    path: '**',
-    redirectTo: 'auth'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'auth'
+  // }
 ];
 
 @NgModule({
