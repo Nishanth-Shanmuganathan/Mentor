@@ -1,5 +1,5 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,11 +21,10 @@ import { MentorLayoutModule } from './layouts/mentor-layout/mentor-layout.module
     BrowserAnimationsModule,
     HttpClientModule,
 
-    RouterModule,
     AppRoutingModule,
 
-    MentorLayoutModule,
-    AuthLayoutModule
+    // Ui service uses modal
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

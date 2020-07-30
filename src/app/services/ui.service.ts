@@ -1,6 +1,6 @@
 import { ErrorComponent } from './../utils/error/error.component';
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { SideNav } from './interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { OtpComponent } from '../layouts/auth-layout/otp/otp.component';

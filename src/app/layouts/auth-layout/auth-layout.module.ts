@@ -12,8 +12,14 @@ import { AuthLayoutComponent } from './auth-layout.component';
 import { DetailsRegistrationComponent } from './details-registration/details-registration.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: AuthComponent },
-  { path: 'details', component: DetailsRegistrationComponent },
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      { path: '', pathMatch: 'full', component: AuthComponent },
+      { path: 'details', component: DetailsRegistrationComponent },
+    ]
+  }
 ];
 
 @NgModule({

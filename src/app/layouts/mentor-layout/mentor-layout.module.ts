@@ -17,22 +17,29 @@ import { NotificationsComponent } from 'src/app/utils/notifications/notification
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'queries'
+    component: MentorLayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'queries'
+      },
+      {
+        path: 'queries',
+        loadChildren: () => import('./../../pages/query/query.module').then(mod => mod.QueryModule)
+      },
+      {
+        path: 'connections',
+        component: ConnectionComponent,
+        loadChildren: () => import('./../../pages/connection/connection.module').then(mod => mod.ConnectionModule)
+      },
+      { path: 'messaging', component: MessagingComponent },
+      { path: 'projects', component: ProjectsComponent },
+      { path: 'groups', component: GroupsComponent },
+      { path: 'notifications', component: NotificationsComponent }
+    ]
   },
-  {
-    path: 'queries',
-    loadChildren: () => import('./../../pages/query/query.module').then(mod => mod.QueryModule)
-  },
-  {
-    path: 'connections',
-    component: ConnectionComponent,
-    loadChildren: () => import('./../../pages/connection/connection.module').then(mod => mod.ConnectionModule)
-  },
-  { path: 'messaging', component: MessagingComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'groups', component: GroupsComponent },
-  { path: 'notifications', component: NotificationsComponent }
+
 ];
 
 @NgModule({
