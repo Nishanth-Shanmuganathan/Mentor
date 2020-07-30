@@ -1,3 +1,6 @@
+import { NetworkNotificationsComponent } from './notifications/network-notifications/network-notifications.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -14,6 +17,9 @@ import { ErrorComponent } from './error/error.component';
     HeaderComponent,
     SideNavComponent,
     ErrorComponent,
+    ProfileComponent,
+    NotificationsComponent,
+    NetworkNotificationsComponent
   ],
   imports: [
     CommonModule,
@@ -23,12 +29,14 @@ import { ErrorComponent } from './error/error.component';
     ReactiveFormsModule
   ],
   exports: [
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
     HeaderComponent,
     SideNavComponent,
     ErrorComponent,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule
+    NotificationsComponent,
+    NetworkNotificationsComponent
   ]
 })
 export class UtilsModule { }

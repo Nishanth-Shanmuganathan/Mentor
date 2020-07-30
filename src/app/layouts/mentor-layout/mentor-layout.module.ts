@@ -1,7 +1,3 @@
-import { MyConnectionComponent } from './../../pages/connection/my-connection/my-connection.component';
-import { NetworkNotificationsComponent } from './../../pages/notifications/network-notifications/network-notifications.component';
-import { NotificationsComponent } from './../../pages/notifications/notifications.component';
-import { QueryModule } from './../../pages/query/query.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,14 +6,13 @@ import { UtilsModule } from './../../utils/utils.module';
 
 import { MentorLayoutComponent } from './mentor-layout.component';
 
-import { QueryComponent } from 'src/app/pages/query/query.component';
-
 import { MessagingComponent } from 'src/app/pages/messaging/messaging.component';
 
 import { GroupsComponent } from 'src/app/pages/groups/groups.component';
 
 import { ProjectsComponent } from 'src/app/pages/projects/projects.component';
 import { ConnectionComponent } from 'src/app/pages/connection/connection.component';
+import { NotificationsComponent } from 'src/app/utils/notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -27,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'queries',
-    component: QueryComponent,
+    loadChildren: () => import('./../../pages/query/query.module').then(mod => mod.QueryModule)
   },
   {
     path: 'connections',
@@ -46,8 +41,7 @@ const routes: Routes = [
     MessagingComponent,
     GroupsComponent,
     ProjectsComponent,
-    NotificationsComponent,
-    NetworkNotificationsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -55,7 +49,6 @@ const routes: Routes = [
 
     UtilsModule,
 
-    QueryModule
   ]
 })
 export class MentorLayoutModule { }
