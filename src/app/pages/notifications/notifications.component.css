@@ -8,11 +8,20 @@ ul {
   padding: 0%;
 }
 
-ul li mat-card {
+mat-card {
   box-shadow: none !important;
 }
 
 .divider {
   padding: 20px;
   font-size: medium;
+}
+
+.badge {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  padding: 5px 10px;
+  margin: 10px;
+  border-radius: 125px;
+  font-size: small;
 }

@@ -12,6 +12,8 @@ import { UIService } from 'src/app/services/ui.service';
 export class NotificationsComponent implements OnInit {
 
   notifications;
+  sent = 0;
+  received = 0;
   isMobile: boolean;
   constructor(
     private notificationService: NotificationService,
@@ -22,10 +24,23 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.userSubscription.subscribe(res => {
+      this.sent = 0;
+      this.received = 0;
       this.notifications = res?.notifications;
-      console.log(this.notifications);
+      this.notifications = this.notificationService.getNotifications();
+      if (this.notifications?.length) {
+        this.notifications.forEach(element => {
+          if (element.action === 'sent') {
+            this.sent++;
+          } else if (element.action === 'received') {
+            this.received++;
+          }
+        });
+      }
     });
+
     this.notifications = this.notificationService.getNotifications();
+
     this.uiService.mobileView.subscribe(res => {
       this.isMobile = res;
     });

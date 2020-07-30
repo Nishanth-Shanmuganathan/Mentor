@@ -56,7 +56,6 @@ export class UIService {
         height: 'fit-content',
         hasBackdrop: true,
         position: { top: '10px', right: '10px' },
-        disableClose: true,
         data: val
       });
   }

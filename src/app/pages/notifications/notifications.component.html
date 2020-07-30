@@ -78,14 +78,30 @@
               </div>
             </ng-template>
           </mat-tab>
-          <mat-tab label="NETWORK">
+          <mat-tab>
+            <ng-template mat-tab-label>
+              NETWORK
+              <span class="badge" *ngIf="sent + received">{{
+                sent + received
+              }}</span>
+            </ng-template>
             <ng-template matTabContent>
               <mat-card
                 *ngIf="!isMobile"
                 class="offset-1 col-10 row justify-content-center"
               >
                 <mat-tab-group mat-stretch-tabs>
-                  <mat-tab label="RECEIVED">
+                  <mat-tab>
+                    <ng-template mat-tab-label>
+                      RECEIVED
+                      <span class="badge" *ngIf="received">{{ received }}</span>
+                    </ng-template>
+                    <mat-card
+                      *ngIf="!received"
+                      class="col-12 row d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center border-bottom"
+                    >
+                      <span>No connection requests received.</span>
+                    </mat-card>
                     <div *ngFor="let notification of notifications">
                       <mat-card
                         *ngIf="notification.action === 'received'"
@@ -127,7 +143,18 @@
                       </mat-card>
                     </div>
                   </mat-tab>
-                  <mat-tab label="SENT">
+                  <mat-tab>
+                    <ng-template mat-tab-label>
+                      SENT
+                      <span class="badge" *ngIf="sent">{{ sent }}</span>
+                    </ng-template>
+
+                    <mat-card
+                      *ngIf="!sent"
+                      class="col-12 row d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center border-bottom"
+                    >
+                      <span>No connection requests sent.</span>
+                    </mat-card>
                     <div *ngFor="let notification of notifications">
                       <mat-card
                         *ngIf="notification.action === 'sent'"
