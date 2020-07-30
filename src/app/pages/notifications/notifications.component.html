@@ -85,39 +85,6 @@
                 class="offset-1 col-10 row justify-content-center"
               >
                 <mat-tab-group mat-stretch-tabs>
-                  <mat-tab label="SENT">
-                    <div *ngFor="let notification of notifications">
-                      <mat-card
-                        *ngIf="notification.action === 'sent'"
-                        class="col-auto row d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center border-bottom"
-                      >
-                        <div class="col-* d-flex flex-row align-items-center">
-                          <img
-                            matCardAvatar
-                            class="m-2"
-                            src="../../../assets/jlpt.jpg"
-                            alt="profile"
-                            width="150px"
-                            height="150px"
-                          />
-                          <b>{{ notification.doerName }}</b>
-                        </div>
-                        <div
-                          class="col-* m-auto m-sm-0 justify-content-end ml-3 d-flex flex-row flex-wrap"
-                        >
-                          <button
-                            class="m-md-2 mt-1 mb-1"
-                            mat-raised-button
-                            color="primary"
-                            *ngIf="notification.action === 'sent'"
-                            (click)="withdraw(notification.doerId)"
-                          >
-                            WITHDRAW
-                          </button>
-                        </div>
-                      </mat-card>
-                    </div>
-                  </mat-tab>
                   <mat-tab label="RECEIVED">
                     <div *ngFor="let notification of notifications">
                       <mat-card
@@ -155,6 +122,39 @@
                             (click)="reject(notification.doerId)"
                           >
                             REJECT
+                          </button>
+                        </div>
+                      </mat-card>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="SENT">
+                    <div *ngFor="let notification of notifications">
+                      <mat-card
+                        *ngIf="notification.action === 'sent'"
+                        class="col-auto row d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center border-bottom"
+                      >
+                        <div class="col-* d-flex flex-row align-items-center">
+                          <img
+                            matCardAvatar
+                            class="m-2"
+                            src="../../../assets/jlpt.jpg"
+                            alt="profile"
+                            width="150px"
+                            height="150px"
+                          />
+                          <b>{{ notification.doerName }}</b>
+                        </div>
+                        <div
+                          class="col-* m-auto m-sm-0 justify-content-end ml-3 d-flex flex-row flex-wrap"
+                        >
+                          <button
+                            class="m-md-2 mt-1 mb-1"
+                            mat-raised-button
+                            color="primary"
+                            *ngIf="notification.action === 'sent'"
+                            (click)="withdraw(notification.doerId)"
+                          >
+                            WITHDRAW
                           </button>
                         </div>
                       </mat-card>

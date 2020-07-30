@@ -26,7 +26,15 @@ export class ConnectionService {
 
   fetchConnections() {
     this.http.get<{ data: User[] }>(environment.server + '/conn').subscribe(res => {
-      console.log(res.data);
+      this.connections = res.data;
+      this.connectionSubscription.next(this.connections);
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  fetchMyConnections() {
+    this.http.get<{ data: User[] }>(environment.server + '/conn/my').subscribe(res => {
       this.connections = res.data;
       this.connectionSubscription.next(this.connections);
     }, err => {

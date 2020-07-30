@@ -1,10 +1,11 @@
+import { NotificationService } from './notification.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Answer } from './interfaces';
 import { tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { UIService } from 'src/app/services/ui.service';
 import { HttpClient } from '@angular/common/http';
-import { Query } from 'src/app/services/interfaces';
+import { Query, User } from 'src/app/services/interfaces';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -19,12 +20,13 @@ export class QueryService {
   constructor(
     private http: HttpClient,
     private uiService: UIService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: NotificationService,
   ) { }
 
 
   addQueries(query: { query: string; domain: string; }) {
-    return this.http.post<{ message: string, query: Query }>(environment.server + '/queries', query)
+    return this.http.post<{ message: string, query: Query, user: User }>(environment.server + '/queries', query)
       .pipe(tap(res => {
         this.queries.unshift(res.query);
         this.querySubject.next(this.queries);

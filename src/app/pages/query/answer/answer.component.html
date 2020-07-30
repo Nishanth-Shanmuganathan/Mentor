@@ -6,6 +6,7 @@
         [src]="answer.imageUrl || '../../../../assets/user.png'"
       />
       <button
+        *ngIf="user.role === 'Start-up'"
         mat-icon-button
         color="primary"
         class="top_right text-danger"

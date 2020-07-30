@@ -1,7 +1,7 @@
 import { QueryService } from 'src/app/services/query.service';
 import { Answer } from './../../../services/interfaces';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Query } from 'src/app/services/interfaces';
+import { Query, User } from 'src/app/services/interfaces';
 
 @Component({
   selector: 'app-answer',
@@ -10,6 +10,7 @@ import { Query } from 'src/app/services/interfaces';
 })
 export class AnswerComponent implements OnInit {
   @Input() answer: Answer;
+  @Input() user: User;
   @Output() commentId = new EventEmitter<string>();
   constructor() { }
 

@@ -39,6 +39,7 @@
           <app-answer
             *ngFor="let answer of query.comments"
             [answer]="answer"
+            [user]="user"
             (commentId)="deleteComment($event, query._id)"
           ></app-answer>
         </div>

@@ -18,10 +18,11 @@ export class MyConnectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.connectionService.connectionSubscription.subscribe(res => {
+      console.log('inside sub');
       this.connections = res;
       console.log(res);
     });
-    this.connectionService.fetchConnections();
+    this.connectionService.fetchMyConnections();
   }
 
 }
