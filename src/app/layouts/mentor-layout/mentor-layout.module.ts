@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../../utils/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -36,7 +37,7 @@ const routes: Routes = [
       { path: 'messaging', component: MessagingComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'groups', component: GroupsComponent },
-      { path: 'notifications', component: NotificationsComponent }
+      { path: 'notifications', component: NotificationsComponent },
     ]
   },
 

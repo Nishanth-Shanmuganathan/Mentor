@@ -1,3 +1,4 @@
+import { UIService } from 'src/app/services/ui.service';
 import { ConnectionService } from './../../../services/connection.service';
 import { User } from './../../../services/interfaces';
 import { Component, OnInit, Input } from '@angular/core';
@@ -12,7 +13,8 @@ export class ProfileCardsComponent implements OnInit {
   @Input() connection: User;
   @Input() self = false;
   constructor(
-    private connectionService: ConnectionService
+    private connectionService: ConnectionService,
+    private uiService: UIService
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,10 @@ export class ProfileCardsComponent implements OnInit {
 
   remove(id: string) {
     this.connectionService.remove(id);
+  }
+
+  openProfile(userId: string) {
+    this.uiService.openProfileModel(userId);
   }
 
 }

@@ -24,12 +24,20 @@
       >
         CONNECT
       </button>
-      <button mat-raised-button color="accent">
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="openProfile(connection._id)"
+      >
         VIEW PROFILE
       </button>
     </div>
     <div *ngIf="self" class="d-flex justify-content-around align-items-end">
-      <button mat-raised-button color="primary">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openProfile(connection._id)"
+      >
         VIEW PROFILE
       </button>
       <button mat-raised-button color="accent" (click)="remove(connection._id)">

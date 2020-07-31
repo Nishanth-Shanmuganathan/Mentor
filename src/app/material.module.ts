@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
 
 const Modules = [
   MatToolbarModule,
@@ -41,7 +42,8 @@ const Modules = [
   MatCheckboxModule,
   MatSliderModule,
   MatDatepickerModule,
-  MatTabsModule
+  MatTabsModule,
+  MatChipsModule
 ];
 
 @NgModule({

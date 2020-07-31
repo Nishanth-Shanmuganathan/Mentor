@@ -32,6 +32,12 @@ export class AuthService {
       });
   }
 
+
+  getParticularUser(userId: string) {
+    return this.http.get<{ user: User }>(environment.server + '/auth/user/' + userId);
+  }
+
+
   login(cred: AuthCred) {
     return this.http.post<{ token: string, user: User }>(environment.server + '/auth/login', cred)
       .pipe(tap(res => {

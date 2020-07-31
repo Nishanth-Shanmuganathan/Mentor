@@ -1,1 +1,92 @@
-<p>profile works!</p>
+<div class="container" *ngIf="user">
+  <div
+    class="row m-2 profile-pic-row justify-content-center justify-content-md-between align-items-end"
+  >
+    <div class="col-* p-4">
+      <img
+        [ngClass]="{ 'profile-picture': user?._id }"
+        src="./../../../assets/jlpt.jpg"
+        width="100"
+        alt="profile_pic"
+      />
+    </div>
+
+    <div class="row mr-2 mt-1">
+      <p class="col-12 topic ml-3">{{ user?.username }}</p>
+      <div
+        *ngIf="user?.role === 'Mentor'"
+        class="col-12 ml-2 row justify-content-center"
+      >
+        <table class="col-12" cellpadding="10px">
+          <tr>
+            <th>Position</th>
+            <td>{{ user?.roleDetails.position }}</td>
+          </tr>
+          <tr>
+            <th>Organization</th>
+            <td>{{ user?.roleDetails.company }}</td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td>{{ user?.city }}</td>
+          </tr>
+          <tr>
+            <th>Domain</th>
+            <td>{{ user?.roleDetails.domain }}</td>
+          </tr>
+          <tr>
+            <th>Project collaboration pay expected</th>
+            <td>{{ user?.roleDetails.ctc }} lakhs</td>
+          </tr>
+        </table>
+      </div>
+      <div
+        *ngIf="user?.role === 'Start-up'"
+        class="col-12 ml-2 row justify-content-center"
+      >
+        <table class="col-12" cellpadding="10px">
+          <tr>
+            <th>Start up Name</th>
+            <td>{{ user?.roleDetails.company }}</td>
+          </tr>
+          <tr>
+            <th>Start up Location</th>
+            <td>{{ user?.city }}</td>
+          </tr>
+          <tr>
+            <th>Start up Size</th>
+            <td>0 - {{ user?.roleDetails.employees }} employees</td>
+          </tr>
+          <tr>
+            <th>Domain</th>
+            <td>{{ user?.roleDetails.domain }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div
+      *ngIf="!owner"
+      class="col-12 col-md-10 offset-md-1 row justify-content-around align-items-stretch"
+    >
+      <button mat-raised-button color="primary" class="col-*">MESSAGE</button>
+      <button
+        *ngIf="connectedUser"
+        mat-raised-button
+        color="primary"
+        class="col-*"
+        (click)="remove(user._id)"
+      >
+        REMOVE
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="col-*"
+        *ngIf="!connectedUser"
+        (click)="sendReq(user._id)"
+      >
+        CONNECT
+      </button>
+    </div>
+  </div>
+</div>

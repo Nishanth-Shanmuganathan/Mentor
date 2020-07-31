@@ -1,0 +1,27 @@
+.container {
+  min-height: 85vh;
+  height: 100%;
+  border-radius: 10px;
+  background-image: repeating-linear-gradient(to bottom right, white, rgba(0, 0, 0, 0.1), white, rgba(0, 0, 0, 0.1), white, rgba(0, 0, 0, 0.1), white)
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+  border: 2px outset silver;
+}
+
+.topic {
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+table {
+  border-radius: 10px;
+  width: 100%;
+  background-color: white;
+  color: black;
+  margin: 20px;
+}

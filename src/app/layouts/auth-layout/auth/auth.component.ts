@@ -69,9 +69,9 @@ export class AuthComponent implements OnInit {
     };
 
     this.authService.login(loginCred).subscribe(res => {
-      form.reset();
       this.uiService.errorMessage('Login successful');
       this.route.navigate(['/']);
+      form.reset();
     }, err => {
       form.reset();
       console.log(err);

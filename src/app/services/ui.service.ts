@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../utils/profile/profile.component';
 import { ErrorComponent } from './../utils/error/error.component';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -67,5 +68,19 @@ export class UIService {
 
   closeModals() {
     this.dialog.closeAll();
+  }
+
+  openProfileModel(userId: string) {
+    console.log('hi');
+    this.dialog.open(ProfileComponent, {
+      width: '90vw',
+      minWidth: '300px',
+      maxWidth: '500px',
+      height: 'fit-content',
+      hasBackdrop: true,
+      data: {
+        userId
+      }
+    });
   }
 }

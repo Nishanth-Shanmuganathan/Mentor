@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from './../../services/connection.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/services/interfaces';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +12,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  connectedUser: boolean;
+  user: User;
+  owner = false;
+  userId: string;
+  countries: string[] = [];
+
+  constructor(
+    private authService: AuthService,
+    private connectionService: ConnectionService,
+    @Inject(MAT_DIALOG_DATA) public data: { userId: string }
+  ) { }
 
   ngOnInit(): void {
+    this.userId = this.data.userId;
+
+    this.authService.userSubscription.subscribe(res => {
+      const user = res;
+      this.connectedUser = user?.connections.includes(this.userId);
+      this.checkUserId(user, this.userId);
+    });
+
+
+  }
+
+  checkUserId(head: User, incoming: string) {
+    if (head?._id && incoming && head?._id !== incoming) {
+      this.owner = false;
+      this.authService.getParticularUser(incoming).subscribe(res => {
+        this.user = res.user;
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.owner = true;
+      this.user = head;
+    }
+  }
+  sendReq(id: string) {
+    this.connectionService.sendConnectionRequest(id);
+  }
+
+  remove(id: string) {
+    this.connectionService.remove(id);
   }
 
 }

@@ -182,10 +182,18 @@
                 </mat-tab-group>
               </mat-card>
               <div *ngIf="isMobile" class="col-12 col-lg-10 offset-lg-1">
-                <ul>
+                <mat-card
+                  *ngIf="!sent && !received"
+                  class="col-12 row d-flex justify-content-between flex-wrap flex-sm-nowrap align-items-center border-bottom"
+                >
+                  <span>No connection notifications.</span>
+                </mat-card>
+                <ul *ngIf="received">
                   <p class="divider text-muted border-bottom">
                     RECEIVED REQUESTS
                   </p>
+                </ul>
+                <ul *ngIf="sent">
                   <li *ngFor="let notification of notifications">
                     <app-network-notifications
                       *ngIf="notification.action === 'received'"

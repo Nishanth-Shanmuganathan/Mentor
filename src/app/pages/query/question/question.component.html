@@ -12,7 +12,7 @@
     <button
       mat-icon-button
       class="top_right"
-      *ngIf="user.role === 'Start-up'"
+      *ngIf="user?.role === 'Start-up'"
       [mat-menu-trigger-for]="menu"
     >
       <mat-icon>more_vert </mat-icon>

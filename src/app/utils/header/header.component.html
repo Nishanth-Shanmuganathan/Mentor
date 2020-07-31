@@ -15,7 +15,8 @@
           <span>Mentor-Hub</span>
         </div>
         <div *ngIf="!icon">
-          <button mat-icon-button>
+          <button mat-icon-button (click)="openProfile(user?._id)">
+            <!-- [routerLink]="['/', 'mentor', 'profile', user?._id]" -->
             <mat-icon>account_circle</mat-icon>
           </button>
         </div>
