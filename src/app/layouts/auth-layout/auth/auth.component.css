@@ -34,7 +34,8 @@ td {
 
 .main-bg {
   /* background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)); */
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgb(0, 0, 0);
+  clip-path: polygon(0 15vh, 100% 0, 100% 85vh, 0 100%);
 }
 
 .grad-buttons {

@@ -17,10 +17,7 @@ export class ConnectionService {
   connectionSubscription = new Subject<User[]>();
 
   constructor(
-    private http: HttpClient,
-    private route: Router,
-    private uiService: UIService,
-    private authService: AuthService
+    private http: HttpClient
   ) { }
 
 
@@ -34,76 +31,26 @@ export class ConnectionService {
   }
 
   fetchMyConnections() {
-    this.http.get<{ data: User[] }>(environment.server + '/conn/my').subscribe(res => {
-      this.connections = res.data;
-      this.connectionSubscription.next(this.connections);
-    }, err => {
-      console.log(err);
-    });
+    return this.http.get<{ data: User[] }>(environment.server + '/conn/my');
   }
 
   sendConnectionRequest(id) {
-    this.http.post<{ message: string, user: User }>(environment.server + '/conn/' + id, {})
-      .subscribe(res => {
-        this.authService.user = res.user;
-        this.authService.userSubscription.next(res.user);
-        const receiverIndex = this.connections.findIndex(connection => connection._id === id);
-        this.connections.splice(receiverIndex, 1);
-        this.uiService.errorMessage(res.message);
-        this.connectionSubscription.next(this.connections);
-      }, err => {
-        console.log(err);
-        this.uiService.errorMessage(err.error.message);
-      });
+    return this.http.post<{ message: string, user: User }>(environment.server + '/conn/' + id, {});
   }
 
   withdraw(id) {
-    this.http.get<{ message: string, user: User }>(environment.server + '/conn/withdraw/' + id)
-      .subscribe(res => {
-        this.authService.user = res.user;
-        this.authService.userSubscription.next(res.user);
-        this.uiService.errorMessage(res.message);
-      }, err => {
-        console.log(err);
-        this.uiService.errorMessage(err.error.message);
-      });
+    return this.http.get<{ message: string, user: User }>(environment.server + '/conn/withdraw/' + id);
   }
 
   accept(id) {
-    this.http.get<{ message: string, user: User }>(environment.server + '/conn/accept/' + id)
-      .subscribe(res => {
-        this.authService.user = res.user;
-        this.authService.userSubscription.next(res.user);
-        this.uiService.errorMessage(res.message);
-      }, err => {
-        console.log(err);
-        this.uiService.errorMessage(err.error.message);
-      });
+    return this.http.get<{ message: string, user: User }>(environment.server + '/conn/accept/' + id);
   }
 
   reject(id) {
-    this.http.get<{ message: string, user: User }>(environment.server + '/conn/reject/' + id)
-      .subscribe(res => {
-        this.authService.user = res.user;
-        this.authService.userSubscription.next(res.user);
-        this.uiService.errorMessage(res.message);
-      }, err => {
-        console.log(err);
-        this.uiService.errorMessage(err.error.message);
-      });
+    return this.http.get<{ message: string, user: User }>(environment.server + '/conn/reject/' + id);
   }
 
   remove(id) {
-    this.http.get<{ message: string, user: User, userConnections: User[] }>(environment.server + '/conn/remove/' + id)
-      .subscribe(res => {
-        console.log(res.user);
-        this.authService.user = res.user;
-        this.authService.userSubscription.next(res.user);
-        this.connectionSubscription.next(res.userConnections);
-        this.uiService.errorMessage(res.message);
-      }, err => {
-        console.log(err);
-        this.uiService.errorMessage(err.error.message);
-      });
+    return this.http.get<{ message: string, user: User, userConnections: User[] }>(environment.server + '/conn/remove/' + id);
   }
 }

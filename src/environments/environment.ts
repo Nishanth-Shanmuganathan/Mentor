@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  server: 'http://localhost:3000'
+  server: 'http://localhost:3000',
+  firebase: {
+    apiKey: 'AIzaSyAQrnhY9QUf1EmrB0XHpKLOcy3zH7dlYKI',
+    authDomain: 'nis-chatroom.firebaseapp.com',
+    databaseURL: 'https://nis-chatroom.firebaseio.com',
+    projectId: 'nis-chatroom',
+    storageBucket: 'nis-chatroom.appspot.com',
+    messagingSenderId: '268317516518',
+    appId: '1:268317516518:web:dd9dd7d2528c61fb81d127'
+  }
 };
 
 /*

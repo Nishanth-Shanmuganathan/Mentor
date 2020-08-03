@@ -13,14 +13,18 @@ export class MyConnectionComponent implements OnInit {
   connections: User[] = [];
   constructor(
     private connectionService: ConnectionService,
-    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.connectionService.connectionSubscription.subscribe(res => {
       this.connections = res;
     });
-    this.connectionService.fetchMyConnections();
+    this.connectionService.fetchMyConnections().subscribe(res => {
+      this.connectionService.connections = res.data;
+      this.connectionService.connectionSubscription.next(this.connectionService.connections);
+    }, err => {
+      console.log(err);
+    });
   }
 
 }

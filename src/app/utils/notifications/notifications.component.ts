@@ -48,14 +48,38 @@ export class NotificationsComponent implements OnInit {
   }
 
   withdraw(connectionId) {
-    this.connectionService.withdraw(connectionId);
+    this.connectionService.withdraw(connectionId)
+      .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
+        this.uiService.errorMessage(res.message);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
   }
 
   accept(connectionId) {
-    this.connectionService.accept(connectionId);
+    this.connectionService.accept(connectionId)
+      .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
+        this.uiService.errorMessage(res.message);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
   }
 
   reject(connectionId) {
-    this.connectionService.reject(connectionId);
+    this.connectionService.reject(connectionId)
+      .subscribe(res => {
+        this.authService.user = res.user;
+        this.authService.userSubscription.next(res.user);
+        this.uiService.errorMessage(res.message);
+      }, err => {
+        console.log(err);
+        this.uiService.errorMessage(err.error.message);
+      });
   }
 }

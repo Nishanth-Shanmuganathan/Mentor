@@ -1,3 +1,4 @@
+import { ConnectionService } from 'src/app/services/connection.service';
 import { ProfileComponent } from './../utils/profile/profile.component';
 import { ErrorComponent } from './../utils/error/error.component';
 import { Injectable } from '@angular/core';
@@ -16,7 +17,7 @@ export class UIService {
   currentView: boolean = undefined;
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) { }
 
 
@@ -71,7 +72,6 @@ export class UIService {
   }
 
   openProfileModel(userId: string) {
-    console.log('hi');
     this.dialog.open(ProfileComponent, {
       width: '90vw',
       minWidth: '300px',

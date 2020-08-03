@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/services/interfaces';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { UIService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private connectionService: ConnectionService,
+    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { userId: string }
   ) { }
 
@@ -56,5 +58,10 @@ export class ProfileComponent implements OnInit {
   remove(id: string) {
     this.connectionService.remove(id);
   }
+
+  closeProfile() {
+    this.dialog.closeAll();
+  }
+
 
 }
