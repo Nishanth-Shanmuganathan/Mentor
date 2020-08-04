@@ -49,7 +49,7 @@ export class UIService {
     }
   }
 
-  errorMessage(val: string) {
+  errorMessage(val: string = 'An unknown error occurred.') {
     this.closeModals();
     this.dialog.open(ErrorComponent,
       {

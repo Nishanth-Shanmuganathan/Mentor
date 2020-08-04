@@ -7,8 +7,12 @@ import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 
 const domains = [
   'Computer Science',
-  'Mechanical Engineering'
-
+  'Mechanical Engineering',
+  'Electrical Engineering',
+  'Civil Engineering',
+  'Chemical Engineering',
+  'Automobile Engineering',
+  'Aerospace Engineering',
 ];
 
 @Component({

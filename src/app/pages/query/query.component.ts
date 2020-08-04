@@ -15,7 +15,7 @@ import { Query } from 'src/app/services/interfaces';
 })
 export class QueryComponent implements OnInit, OnDestroy {
   isMobile: boolean;
-  queries: Query[] = [];
+  queries: Query[];
   user: User;
   querySubscription: Subscription;
   userSubscription: Subscription;

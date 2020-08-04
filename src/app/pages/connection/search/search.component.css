@@ -19,3 +19,17 @@
 ::ng-deep .connection.mat-form-field>* {
   color: white !important;
 }
+
+mat-spinner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

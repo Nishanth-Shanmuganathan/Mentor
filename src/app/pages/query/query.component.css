@@ -36,3 +36,10 @@ p {
   padding: 10px;
   width: 250px;
 }
+
+mat-spinner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

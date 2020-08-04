@@ -19,5 +19,9 @@ mat-drawer {
   min-height: 100%;
   padding: 10px;
   background-color: black;
-  position: absolute;
+  position: relative;
+}
+
+router-outlet {
+  position: relative;
 }

@@ -1,4 +1,11 @@
-<div class="container-fluid">
+<mat-spinner
+  *ngIf="!connections"
+  color="accent"
+  [diameter]="50"
+  [strokeWidth]="10"
+></mat-spinner>
+
+<div class="container-fluid" *ngIf="connections">
   <div class="row mt-3 mb-3">
     <div class="offset-1 col-">
       <button mat-raised-button [routerLink]="['..', 'list']">
@@ -7,6 +14,7 @@
       </button>
     </div>
   </div>
+
   <div class="row justify-content-around">
     <div class="col-*">
       <mat-form-field class="connection" color="accent">
@@ -46,6 +54,18 @@
         </mat-autocomplete>
       </mat-form-field>
     </div>
+  </div>
+  <div
+    *ngIf="!connections.length"
+    class="row error justify-content-center align-items-center flex-column"
+  >
+    <img
+      class="col-*"
+      src="./../../../../assets/nofriends.jpg"
+      width="100px"
+      height="200px"
+    />
+    <p class="col-* text-light">Sorry we have no more users.</p>
   </div>
   <div class="row justify-content-center align-items-stretch">
     <div class="col-*" *ngFor="let connection of filteredConnections">

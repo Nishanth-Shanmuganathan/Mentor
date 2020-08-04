@@ -44,6 +44,7 @@ export class AddQueryComponent implements OnInit {
       this.closeModals();
       this.uiService.errorMessage(res.message);
     }, err => {
+      console.log(err);
       this.uiService.errorMessage(err.error.message);
     });
   }

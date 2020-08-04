@@ -5,6 +5,7 @@ import { UIService } from 'src/app/services/ui.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SideNav } from 'src/app/services/interfaces';
 import { NotificationService } from 'src/app/services/notification.service';
+import { User } from './../../services/interfaces';
 
 @Component({
   selector: 'app-side-nav',
@@ -14,6 +15,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class SideNavComponent implements OnInit, OnDestroy {
   data: SideNav[];
   fixedData: SideNav[];
+  user: User;
   isMobile: boolean;
   mobileViewSubscription: Subscription;
   userSubscription: Subscription;
@@ -35,6 +37,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     });
 
     this.userSubscription = this.authService.userSubscription.subscribe(res => {
+      this.user = res;
       let sent = 0;
       let received = 0;
       let notifications = res?.notifications;
@@ -53,12 +56,17 @@ export class SideNavComponent implements OnInit, OnDestroy {
     });
   }
 
+  openProfile(userId: string) {
+    this.uiService.openProfileModel(userId);
+  }
+
   ngOnDestroy() {
     if (this.mobileViewSubscription) {
       this.mobileViewSubscription.unsubscribe();
     }
     this.userSubscription.unsubscribe();
   }
+
 
   logout() {
     this.authService.logout()

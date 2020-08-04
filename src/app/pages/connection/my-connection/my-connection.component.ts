@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MyConnectionComponent implements OnInit, OnDestroy {
 
-  connections: User[] = [];
+  connections: User[];
   connectionSubscription: Subscription;
   constructor(
     private connectionService: ConnectionService,

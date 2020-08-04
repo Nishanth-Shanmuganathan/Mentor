@@ -3,9 +3,9 @@
   class="profile-section d-flex flex-column justify-content-between"
 >
   <div class="d-flex justify-content-end">
-    <mat-icon>account_circle</mat-icon>
+    <mat-icon (click)="openProfile(user?._id)">account_circle</mat-icon>
   </div>
-  <p>
+  <p (click)="openProfile(user?._id)">
     Sunil Padasala Gopikrishna Vatsalam
   </p>
 </div>
