@@ -32,19 +32,24 @@ export class UIService {
     if (true) {
       return [
         { name: 'Queries', icon: 'contact_support', link: 'queries' },
-        { name: 'Messaging', icon: 'message', link: 'messaging' },
+        { name: 'Messaging', icon: 'message', link: 'null' },
+        // { name: 'Messaging', icon: 'message', link: 'messaging' },
         { name: 'Connections', icon: 'group', link: 'connections' },
-        { name: 'Projects', icon: 'construction', link: 'projects' },
-        { name: 'Groups', icon: 'connect_without_contact', link: 'groups' },
+        // { name: 'Projects', icon: 'construction', link: 'projects' },
+        { name: 'Projects', icon: 'construction', link: 'null' },
+        // { name: 'Groups', icon: 'connect_without_contact', link: 'groups' },
+        { name: 'Groups', icon: 'connect_without_contact', link: 'null' },
       ];
     }
   }
   getFixedNavigation(): SideNav[] {
     if (true) {
       return [
-        { name: 'Payments', icon: 'payments', link: 'payments' },
+        { name: 'Payments', icon: 'payments', link: 'null' },
+        // { name: 'Payments', icon: 'payments', link: 'payments' },
         { name: 'Notifications', icon: 'notifications', link: 'notifications' },
-        { name: 'Settings', icon: 'settings', link: 'settings' }
+        { name: 'Settings', icon: 'settings', link: 'null' }
+        // { name: 'Settings', icon: 'settings', link: 'settings' }
       ];
     }
   }

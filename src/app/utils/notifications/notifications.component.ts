@@ -29,7 +29,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     this.userSubscription = this.authService.userSubscription.subscribe(res => {
       this.sent = 0;
       this.received = 0;
-      console.log(this.sent + this.received);
+      // console.log(this.sent + this.received);
       this.notifications = res?.notifications;
       this.notifications = this.notificationService.getNotifications();
       if (this.notifications?.length) {
@@ -58,7 +58,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         this.authService.userSubscription.next(res.user);
         this.uiService.errorMessage(res.message);
       }, err => {
-        console.log(err);
+        // console.log(err);
         this.uiService.errorMessage(err.error.message);
       });
   }
@@ -70,7 +70,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         this.authService.userSubscription.next(res.user);
         this.uiService.errorMessage(res.message);
       }, err => {
-        console.log(err);
+        // console.log(err);
         this.uiService.errorMessage(err.error.message);
       });
   }
@@ -82,7 +82,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         this.authService.userSubscription.next(res.user);
         this.uiService.errorMessage(res.message);
       }, err => {
-        console.log(err);
+        // console.log(err);
         this.uiService.errorMessage(err.error.message);
       });
   }

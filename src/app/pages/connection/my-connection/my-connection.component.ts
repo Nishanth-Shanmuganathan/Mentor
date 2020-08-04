@@ -26,7 +26,7 @@ export class MyConnectionComponent implements OnInit, OnDestroy {
       this.connectionService.connections = res.data;
       this.connectionService.connectionSubscription.next(this.connectionService.connections);
     }, err => {
-      console.log(err);
+      // console.log(err);
     });
   }
 

@@ -6,6 +6,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SideNav } from 'src/app/services/interfaces';
 import { NotificationService } from 'src/app/services/notification.service';
 import { User } from './../../services/interfaces';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-side-nav',
@@ -24,7 +25,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private uiService: UIService,
     private authService: AuthService,
     private notificationService: NotificationService,
-    private route: Router
+    private route: Router,
+    private snackBar: MatSnackBar
   ) {
 
   }
@@ -51,13 +53,16 @@ export class SideNavComponent implements OnInit, OnDestroy {
           }
         });
         this.notifications = sent + received;
-        console.log(this.notifications);
+        // console.log(this.notifications);
       }
     });
   }
 
   openProfile(userId: string) {
     this.uiService.openProfileModel(userId);
+  }
+  openSnack() {
+    this.snackBar.open('This functionality is under development', 'Got it!!');
   }
 
   ngOnDestroy() {
@@ -73,7 +78,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         this.uiService.errorMessage(res.message);
       }, err => {
-        console.log(err);
+        // console.log(err);
         localStorage.clear();
         this.authService.isAuth.next(false);
         this.authService.user = null;

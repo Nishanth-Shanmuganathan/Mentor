@@ -18,11 +18,23 @@
   class="d-flex flex-column align-items-center"
 >
   <div>
-    <a *ngFor="let datum of data" [routerLink]="datum.link">
+    <a *ngFor="let datum of data">
       <mat-list-item
+        *ngIf="datum.link !== 'null'"
+        matRipple
+        [routerLink]="datum.link"
+        matRippleColor="#ffffff1f"
+        routerLinkActive="link-active"
+      >
+        <mat-icon>{{ datum.icon }}</mat-icon>
+        <span>{{ datum.name | uppercase }}</span>
+      </mat-list-item>
+      <mat-list-item
+        *ngIf="datum.link === 'null'"
         matRipple
         matRippleColor="#ffffff1f"
         routerLinkActive="link-active"
+        (click)="openSnack()"
       >
         <mat-icon>{{ datum.icon }}</mat-icon>
         <span>{{ datum.name | uppercase }}</span>
@@ -32,10 +44,12 @@
   </div>
 
   <div>
-    <a *ngFor="let datum of fixedData" [routerLink]="datum.link">
+    <a *ngFor="let datum of fixedData">
       <mat-list-item
+        *ngIf="datum.link !== 'null'"
         class="below-set"
         matRipple
+        [routerLink]="datum.link"
         matRippleColor="#ffffff1f"
         routerLinkActive="link-active"
         [routerLinkActiveOptions]="{ exact: true }"
@@ -47,6 +61,16 @@
           *ngIf="datum.name === 'Notifications' && notifications"
           >{{ notifications }}</span
         >
+      </mat-list-item>
+      <mat-list-item
+        *ngIf="datum.link === 'null'"
+        matRipple
+        matRippleColor="#ffffff1f"
+        routerLinkActive="link-active"
+        (click)="openSnack()"
+      >
+        <mat-icon>{{ datum.icon }}</mat-icon>
+        <span>{{ datum.name | uppercase }}</span>
       </mat-list-item>
     </a>
     <mat-list-item

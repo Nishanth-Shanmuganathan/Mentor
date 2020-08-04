@@ -32,7 +32,7 @@ export class ProfileCardsComponent implements OnInit {
         this.uiService.errorMessage(res.message);
         this.connectionService.connectionSubscription.next(this.connectionService.connections);
       }, err => {
-        console.log(err);
+        // console.log(err);
         this.uiService.errorMessage(err.error.message);
       });
   }
@@ -40,13 +40,13 @@ export class ProfileCardsComponent implements OnInit {
   remove(id: string) {
     this.connectionService.remove(id)
       .subscribe(res => {
-        console.log(res.user);
+        // console.log(res.user);
         this.authService.user = res.user;
         this.authService.userSubscription.next(res.user);
         this.connectionService.connectionSubscription.next(res.userConnections);
         this.uiService.errorMessage(res.message);
       }, err => {
-        console.log(err);
+        // console.log(err);
         this.uiService.errorMessage(err.error.message);
       });
   }

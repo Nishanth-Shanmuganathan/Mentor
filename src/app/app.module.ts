@@ -1,11 +1,11 @@
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AngularFireModule } from '@angular/fire';
+// import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AuthGuard } from './services/auth.gaurd';
@@ -25,7 +25,7 @@ import { AppComponent } from './app.component';
 
     AppRoutingModule,
 
-    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     // Ui service uses modal
     MatDialogModule

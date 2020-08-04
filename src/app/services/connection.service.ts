@@ -26,7 +26,7 @@ export class ConnectionService {
       this.connections = res.data;
       this.connectionSubscription.next(this.connections);
     }, err => {
-      console.log(err);
+      // console.log(err);
     });
   }
 

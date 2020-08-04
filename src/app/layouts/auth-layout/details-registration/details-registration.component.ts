@@ -140,7 +140,7 @@ export class DetailsRegistrationComponent implements OnInit {
       this.uiService.errorMessage(res.message);
       this.route.navigate(['']);
     }, err => {
-      console.log(err.message);
+      // console.log(err.message);
     });
   }
 

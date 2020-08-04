@@ -74,7 +74,7 @@ export class AuthComponent implements OnInit {
       form.reset();
     }, err => {
       form.reset();
-      console.log(err);
+      // console.log(err);
       this.uiService.errorMessage(err.error.message);
     });
   }

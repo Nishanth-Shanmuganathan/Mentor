@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.authService.getParticularUser(incoming).subscribe(res => {
         this.user = res.user;
       }, err => {
-        console.log(err);
+        // console.log(err);
       });
     } else {
       this.owner = true;

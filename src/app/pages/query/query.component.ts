@@ -15,7 +15,7 @@ import { Query } from 'src/app/services/interfaces';
 })
 export class QueryComponent implements OnInit, OnDestroy {
   isMobile: boolean;
-  queries: Query[];
+  queries: Query[] = [];
   user: User;
   querySubscription: Subscription;
   userSubscription: Subscription;
@@ -29,10 +29,10 @@ export class QueryComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.user = this.authService.user;
-    console.log(this.user);
+    // console.log(this.user);
     this.userSubscription = this.authService.userSubscription.subscribe(res => {
       this.user = res;
-      console.log(this.user);
+      // console.log(this.user);
     });
 
     this.querySubscription = this.queryService.querySubject.subscribe(res => {
