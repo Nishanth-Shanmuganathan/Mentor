@@ -1,7 +1,8 @@
+import { Subscription } from 'rxjs';
 import { ConnectionService } from './../../services/connection.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from './../../services/notification.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UIService } from 'src/app/services/ui.service';
 
 @Component({
@@ -9,12 +10,14 @@ import { UIService } from 'src/app/services/ui.service';
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
 })
-export class NotificationsComponent implements OnInit {
+export class NotificationsComponent implements OnInit, OnDestroy {
 
   notifications;
   sent = 0;
   received = 0;
   isMobile: boolean;
+  userSubscription: Subscription;
+  mobileSubscription: Subscription;
   constructor(
     private notificationService: NotificationService,
     private uiService: UIService,
@@ -23,9 +26,10 @@ export class NotificationsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.userSubscription.subscribe(res => {
+    this.userSubscription = this.authService.userSubscription.subscribe(res => {
       this.sent = 0;
       this.received = 0;
+      console.log(this.sent + this.received);
       this.notifications = res?.notifications;
       this.notifications = this.notificationService.getNotifications();
       if (this.notifications?.length) {
@@ -41,7 +45,7 @@ export class NotificationsComponent implements OnInit {
 
     this.notifications = this.notificationService.getNotifications();
 
-    this.uiService.mobileView.subscribe(res => {
+    this.mobileSubscription = this.uiService.mobileView.subscribe(res => {
       this.isMobile = res;
     });
 
@@ -81,5 +85,9 @@ export class NotificationsComponent implements OnInit {
         console.log(err);
         this.uiService.errorMessage(err.error.message);
       });
+  }
+  ngOnDestroy() {
+    this.mobileSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }

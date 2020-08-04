@@ -49,3 +49,19 @@ span {
   color: white;
   border-radius: 5px;
 }
+
+.below-set {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  background-color: rgb(255, 0, 0);
+  color: white;
+  padding: 5px 10px;
+  margin: 10px;
+  border-radius: 125px;
+  font-size: small;
+}

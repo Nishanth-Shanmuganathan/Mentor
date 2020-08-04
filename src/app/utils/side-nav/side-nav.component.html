@@ -34,6 +34,7 @@
   <div>
     <a *ngFor="let datum of fixedData" [routerLink]="datum.link">
       <mat-list-item
+        class="below-set"
         matRipple
         matRippleColor="#ffffff1f"
         routerLinkActive="link-active"
@@ -41,6 +42,11 @@
       >
         <mat-icon>{{ datum.icon }}</mat-icon>
         <span>{{ datum.name | uppercase }}</span>
+        <span
+          class="badge"
+          *ngIf="datum.name === 'Notifications' && notifications"
+          >{{ notifications }}</span
+        >
       </mat-list-item>
     </a>
     <mat-list-item

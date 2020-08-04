@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { UIService } from 'src/app/services/ui.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SideNav } from 'src/app/services/interfaces';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -15,9 +16,12 @@ export class SideNavComponent implements OnInit, OnDestroy {
   fixedData: SideNav[];
   isMobile: boolean;
   mobileViewSubscription: Subscription;
+  userSubscription: Subscription;
+  notifications: number;
   constructor(
     private uiService: UIService,
     private authService: AuthService,
+    private notificationService: NotificationService,
     private route: Router
   ) {
 
@@ -29,12 +33,31 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this.mobileViewSubscription = this.uiService.mobileView.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
+
+    this.userSubscription = this.authService.userSubscription.subscribe(res => {
+      let sent = 0;
+      let received = 0;
+      let notifications = res?.notifications;
+      notifications = this.notificationService.getNotifications();
+      if (notifications?.length) {
+        notifications.forEach(element => {
+          if (element.action === 'sent') {
+            sent++;
+          } else if (element.action === 'received') {
+            received++;
+          }
+        });
+        this.notifications = sent + received;
+        console.log(this.notifications);
+      }
+    });
   }
 
   ngOnDestroy() {
     if (this.mobileViewSubscription) {
       this.mobileViewSubscription.unsubscribe();
     }
+    this.userSubscription.unsubscribe();
   }
 
   logout() {

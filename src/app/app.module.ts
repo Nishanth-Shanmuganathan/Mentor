@@ -1,16 +1,18 @@
+import { environment } from 'src/environments/environment';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { AuthGuard } from './services/auth.gaurd';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './services/auth.interceptor';
 
 import { AppComponent } from './app.component';
-import { AuthLayoutModule } from './layouts/auth-layout/auth-layout.module';
-import { MentorLayoutModule } from './layouts/mentor-layout/mentor-layout.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MentorLayoutModule } from './layouts/mentor-layout/mentor-layout.module
 
     AppRoutingModule,
 
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     // Ui service uses modal
     MatDialogModule
   ],

@@ -1,10 +1,11 @@
+import { Subscription } from 'rxjs';
 import { AddQueryComponent } from './add-query/add-query.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from './../../services/interfaces';
 import { QueryService } from './../../services/query.service';
 import { UIService } from './../../services/ui.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Query } from 'src/app/services/interfaces';
 
 @Component({
@@ -12,10 +13,12 @@ import { Query } from 'src/app/services/interfaces';
   templateUrl: './query.component.html',
   styleUrls: ['./query.component.css']
 })
-export class QueryComponent implements OnInit {
+export class QueryComponent implements OnInit, OnDestroy {
   isMobile: boolean;
   queries: Query[] = [];
   user: User;
+  querySubscription: Subscription;
+  userSubscription: Subscription;
   constructor(
     public uiService: UIService,
     private queryService: QueryService,
@@ -27,20 +30,24 @@ export class QueryComponent implements OnInit {
 
     this.user = this.authService.user;
     console.log(this.user);
-    this.authService.userSubscription.subscribe(res => {
+    this.userSubscription = this.authService.userSubscription.subscribe(res => {
       this.user = res;
       console.log(this.user);
     });
 
-
-    this.queryService.fetchQueries();
-    this.queryService.querySubject.subscribe(res => {
+    this.querySubscription = this.queryService.querySubject.subscribe(res => {
       this.queries = res;
     });
+
+    this.queryService.fetchQueries();
   }
 
   openAddQuery() {
     this.dialog.open(AddQueryComponent, { disableClose: true });
   }
 
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
+  }
 }

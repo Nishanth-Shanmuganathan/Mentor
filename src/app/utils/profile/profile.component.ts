@@ -1,8 +1,9 @@
+import { Subscription } from 'rxjs';
 import { ConnectionService } from './../../services/connection.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/services/interfaces';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UIService } from 'src/app/services/ui.service';
 
@@ -11,14 +12,14 @@ import { UIService } from 'src/app/services/ui.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   connectedUser: boolean;
   user: User;
   owner = false;
   userId: string;
   countries: string[] = [];
-
+  userSubscription: Subscription;
   constructor(
     private authService: AuthService,
     private connectionService: ConnectionService,
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.data.userId;
 
-    this.authService.userSubscription.subscribe(res => {
+    this.userSubscription = this.authService.userSubscription.subscribe(res => {
       const user = res;
       this.connectedUser = user?.connections.includes(this.userId);
       this.checkUserId(user, this.userId);
@@ -63,5 +64,8 @@ export class ProfileComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+  }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/services/interfaces';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -8,13 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
 
   connections: User[];
   filteredConnections: User[];
   countries: string[];
   username: string;
   location: string;
+  connectionSubscription: Subscription;
 
 
   constructor(
@@ -23,7 +25,7 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.connectionService.connectionSubscription.subscribe(res => {
+    this.connectionSubscription = this.connectionService.connectionSubscription.subscribe(res => {
       this.connections = res;
       this.filteredConnections = this.connections;
     });
@@ -43,5 +45,9 @@ export class SearchComponent implements OnInit {
       if (this.location && connection.city.toLowerCase() === this.location.toLowerCase()) { return true; }
       if (!this.username && !this.location) { return true; }
     });
+  }
+
+  ngOnDestroy() {
+    this.connectionSubscription.unsubscribe();
   }
 }
