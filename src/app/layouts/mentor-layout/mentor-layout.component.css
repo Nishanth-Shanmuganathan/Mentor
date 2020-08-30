@@ -18,6 +18,5 @@ mat-drawer {
   min-width: 100%;
   min-height: 100%;
   padding: 10px;
-  background-color: black;
   position: absolute;
 }

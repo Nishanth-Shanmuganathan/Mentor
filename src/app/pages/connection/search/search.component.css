@@ -1,4 +1,4 @@
-::ng-deep .connection .mat-focused .mat-form-field-label {
+/* ::ng-deep .connection .mat-focused .mat-form-field-label {
   color: white !important;
 }
 
@@ -18,7 +18,7 @@
 
 ::ng-deep .connection.mat-form-field>* {
   color: white !important;
-}
+} */
 
 mat-spinner {
   position: absolute;

@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { StoreModule } from '@ngrx/store';
 // import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
@@ -24,7 +25,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
 
     AppRoutingModule,
-
+    StoreModule.forRoot({}),
     // AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     // Ui service uses modal

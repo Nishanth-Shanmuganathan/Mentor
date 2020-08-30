@@ -1,5 +1,6 @@
 main {
   height: 100vh;
+  position: relative;
 }
 
 section {
@@ -21,26 +22,26 @@ td {
   color: white;
   border: 0px;
   border-radius: 50px;
-  background-color: black;
+  /* background-color: black; */
 }
 
 .right-cover {
-  background-image: linear-gradient(to left, rgba(255, 0, 0, 0), rgb(0, 0, 0, 0.8));
+  background-image: linear-gradient(to left, rgb(74, 20, 140, 0), rgb(74, 20, 140));
 }
 
 .left-cover {
-  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  background-image: linear-gradient(to right, rgb(74, 20, 140, 0), rgb(74, 20, 140));
 }
 
 .main-bg {
   /* background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)); */
   background-color: rgb(0, 0, 0);
-  clip-path: polygon(0 15vh, 100% 0, 100% 85vh, 0 100%);
+  background-image: radial-gradient(#4A148C, rgb(29, 9, 48));
 }
 
 .grad-buttons {
-  color: black;
-  background-color: rgb(236, 236, 236);
+  /* color: black; */
+  /* background-color: rgb(236, 236, 236); */
 }
 
 header>span {
@@ -54,12 +55,24 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: absolute; */
-  /* background-color: aqua; */
-  /* left: 50%; */
+}
+
+.logo {
+  position: absolute;
+  top: 10px;
 }
 
 .login-logo {
   white-space: nowrap;
   color: white;
+}
+
+.hint {
+  font-size: small;
+  color: grey;
+  text-align: justify;
+}
+
+table {
+  max-width: 250px;
 }

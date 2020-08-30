@@ -22,7 +22,7 @@ a {
 
 mat-list-item:hover,
 .link-active {
-  background-color: black;
+  background-color: #4A148C;
   color: white;
   cursor: pointer;
   border-radius: 5px;
@@ -30,7 +30,7 @@ mat-list-item:hover,
 }
 
 .profile-section {
-  background-image: repeating-linear-gradient(rgba(0, 0, 0, 0.507), black);
+  background-image: repeating-linear-gradient(rgb(74, 20, 140, 0.5), #4A148C);
   color: white;
   height: 120px;
 }
